@@ -1,43 +1,43 @@
-SoftBridge Supplements - Proje Dokümantasyonu
+# SoftBridge Supplements - Project Documentation
 
-Bu proje, siradan bir e-ticaret sitesinden cok daha otesini hedefleyen, cizgi roman (comic) stiliyle tasarlanmis, yuksek performansli ve tamamen interaktif bir supplement (sporcu gidalari) vitrinidir. Tasarimda hicbir hazir ikon veya emoji kullanilmamis, tum hissiyat tipografi, renk gecisleri ve ozel animasyonlar uzerinden kurgulanmistir. Arayuzun dogal, el yapimi ve profesyonel durmasina ozen gosterilmistir.
+This project aims to go far beyond a standard e-commerce site. It is a highly performant, fully interactive supplement storefront designed with a comic-book aesthetic. No generic icons or emojis were used in the design; the entire look and feel is constructed through typography, dynamic color transitions, and custom animations. The goal was to maintain a natural, handmade, yet highly professional interface.
 
-Kullanilan Teknolojiler ve Mimari
+## Tech Stack & Architecture
 
-Proje, modern web standartlarinin en guncel surumleriyle insa edildi. Temelde Next.js 15 ve React 19 mimarisi uzerinde calisiyor. Tip guvenligi icin TypeScript, stillendirme ve tasarim sistemi icin Tailwind CSS (v3.4) kullanildi. 
+The project was built using the latest modern web standards. At its core, it runs on Next.js 15 and React 19. We used TypeScript for robust type safety and Tailwind CSS (v3.4) for the styling and design system.
 
-Animasyonlar ve etkilesimler bu projenin kalbini olusturuyor. Basit CSS gecisleri yerine, endustri standardi olan GSAP (GreenSock) ve ScrollTrigger eklentisi kullanildi. Urun kartlarindaki dalgalanma (ripple) efektleri icin dogrudan WebGL ve GLSL custom shader'lar yazildi. Sepet ve siparis yonetimi icin React Context API kullanilarak global bir state yonetimi kuruldu.
+Animations and interactions are the beating heart of this project. Instead of relying on basic CSS transitions, we implemented the industry-standard GSAP (GreenSock) alongside its ScrollTrigger plugin. For the fluid ripple effects on the product cards, we wrote custom WebGL and GLSL fragment shaders from scratch. A global state management system was established using the React Context API to handle the shopping cart and order flow.
 
-Teknik Detaylar ve Ozellikler
+## Technical Details & Features
 
-Parcacik (Particle) Animasyonlu Acilis Ekrani (Preloader)
-Kullanici siteye girdiginde siradan bir yuklenme bari gormez. HTML Canvas uzerinde calisan ozel bir parcacik simulasyonu baslar. Binlerce kucuk toz parcacigi, tipki bir supplement tozu gibi fizik kurallarina (yercekimi, ruzgar direnci, turbulans) uygun olarak ekrana savrulur ve merkezde toplanarak "SoftBridge Supplements" yazisini olusturur. Bu animasyon session storage ile kontrol edilir ve kullaniciyi yormamak adina oturum basina sadece bir kez gosterilir.
+### Particle-Based Preloader
+When users enter the site, they aren't greeted by a boring loading bar. Instead, a custom particle simulation built on HTML Canvas takes over. Thousands of tiny dust particles, behaving much like actual supplement powder subject to physics (gravity, wind resistance, turbulence), scatter across the screen before converging in the center to form the "SoftBridge Supplements" text. We use session storage to ensure this animation only plays once per session, preventing user fatigue.
 
-Iksonsuz ve Dinamik Tipografi
-Sitede herhangi bir svg, png veya emoji ikon kullanilmamaktadir. Bunun yerine yazilarin kendisi birer tasarim objesi olarak kurgulanmistir. Unlem isaretleri, soru isaretleri, "YES!", "NO!" gibi ifadeler, cizgi roman konseptine uygun olarak farkli renkler, boyutlar, asimetrik donus (rotation) acilari ve kalin golgelerle (text-shadow) tasarlanmistir.
+### Icon-Free Dynamic Typography
+There isn't a single SVG, PNG, or emoji icon used throughout the layout. Instead, the text itself serves as a design object. Exclamation marks, question marks, and expressions like "YES!" or "NO!" are styled with varying colors, large font sizes, asymmetric rotation angles, and thick text shadows to perfectly match the comic-book concept.
 
-Scroll'a Duyarli Arkaplan (Dynamic Background)
-Site durağan degildir. Kullanici sayfayi asagi dogru kaydirdikca (scroll), GSAP ScrollTrigger devreye girer. Sitenin ana krem rengi arkaplani, scroll yuzdesine bagli olarak pruzsuz bir sekilde ucuk sari ve bej tonlari arasinda gidip gelir. Bu gecisler bilerek cok yumusak tutulmustur, boylece goz yormaz ama sitenin yasadigi hissini verir.
+### Scroll-Responsive Dynamic Background
+The site doesn't just sit still. As the user scrolls down the page, GSAP ScrollTrigger kicks in. The primary off-white background color smoothly interpolates through subtle shades of pale yellow and beige based on the scroll progress. These transitions are intentionally kept very soft, ensuring readability while making the site feel alive and organic.
 
-WebGL ve Fizik Tabanli Etkilesimler
-Ana sayfadaki urun resimlerinin uzerine gelindiginde (hover), siradan bir buyume efekti yerine WebGL fragment shader'lar tetiklenir. Fare imlecinin hizina ve yonune gore resim uzerinde sivi dalgalanmalari yaratilir. Ayni zamanda fare imleci (MouseFollower), kullanicinin sayfa icindeki hareketlerine gore sekil degistiren, baglama duyarli ozel bir bilesen olarak kodlanmistir.
+### WebGL and Physics-Based Interactions
+Hovering over the product images on the homepage doesn't just scale them up. Instead, it triggers custom WebGL fragment shaders. Liquid ripples propagate across the image depending on the speed and direction of the mouse cursor. Simultaneously, a custom Cursor (MouseFollower) adapts its shape and displays context-sensitive text based on the user's movements across the page.
 
-Mobil Uyumluluk ve Dokunmatik Destegi
-Eski nesil projelerde animasyonlar mobilde kapatilirken, bu projede tum mimari mobil oncelikli (mobile-first) olarak elden gecirildi. Urun kartlarindaki GSAP 3D hareket efektleri (mousemove) dokunmatik ekranlara (touchmove) tam entegre edildi. Ust navigasyon bar, tablet ve telefonlarda profesyonel bir hamburger menuye donusur. Tum animasyonlar, tablet ve telefonda da masaustundeki akiciligiyla calisir.
+### Mobile Compatibility & Touch Support
+While many modern projects disable complex animations on mobile devices, this architecture was overhauled with a mobile-first approach. The 3D GSAP hover effects on product cards (mousemove) were fully integrated with touch screens (touchmove). The top navigation bar elegantly transforms into a professional hamburger menu on tablets and phones. Every single animation runs just as fluidly on mobile devices as it does on desktop.
 
-Tam Tesekkullu E-Ticaret Akisi
-Sepete urun ekleme (CartContext), urun miktarini ayarlama ve siparisi tamamlama surecleri tamamen gercekci bir e-ticaret altyapisina sahiptir. "Siparisi Tamamla" butonuna basildiginda kullanici ozel olarak tasarlanmis /checkout (Odeme) sayfasina yonlendirilir. Burada adres, kisisel bilgiler ve kredi karti formlari bulunur. Odeme onayi ardindan siparis numarasi ureten /success (Siparis Basarili) ekranina aktarim saglanir.
+### Full E-Commerce Flow
+The process of adding items to the cart (CartContext), adjusting quantities, and completing an order is backed by a realistic e-commerce simulation structure. When the "Complete Order" button is clicked, users are routed to a custom-designed `/checkout` page featuring address, personal info, and credit card forms. Upon payment confirmation, they are redirected to a `/success` screen that generates a simulated order number.
 
-Klasor Yapisi
+## Directory Structure
 
-- src/app/layout.tsx: Global ayarlar, font yuklemeleri ve metadata tanimlari.
-- src/app/page.tsx: Ana sayfa duzeni, ana GSAP scroll tetikleyicileri, dinamik arkaplan hesaplamalari.
-- src/app/checkout/page.tsx: Form dogrulamalari ve siparis ozeti iceren odeme sayfasi.
-- src/app/success/page.tsx: Siparis onay ekrani.
-- src/components/Preloader.tsx: Canvas tabanli toz/parcacik simulasyonu motoru.
-- src/components/HoverWaveImage.tsx: WebGL shader yapilandirmalari ve GLSL kodlari.
-- src/components/ComicStory.tsx: Cizgi roman mantigiyla calisan, interaktif marka hikayesi bileseni.
-- src/components/CartSidebar.tsx: Global sepet durumunu (Context) ekrana yansitan yan panel.
-- src/context/CartContext.tsx: Sitenin e-ticaret state'ini (sepet durumu) hafizada tutan React Context yapisi.
+- `src/app/layout.tsx`: Global settings, font loading, and metadata definitions.
+- `src/app/page.tsx`: Main page layout, core GSAP scroll triggers, and dynamic background logic.
+- `src/app/checkout/page.tsx`: The checkout page containing form validations and the order summary.
+- `src/app/success/page.tsx`: The order success and confirmation screen.
+- `src/components/Preloader.tsx`: The Canvas-based particle/dust simulation engine.
+- `src/components/HoverWaveImage.tsx`: WebGL shader configurations and GLSL code.
+- `src/components/ComicStory.tsx`: An interactive brand story component functioning like a comic strip.
+- `src/components/CartSidebar.tsx`: A side panel that visually reflects the global cart state.
+- `src/context/CartContext.tsx`: The React Context structure keeping the e-commerce state in memory.
 
-Bu proje, kullanici deneyimini (UX) ve kullanici arayuzunu (UI) performanstan odun vermeden en ust duzeye cikarmak amaciyla ozenle gelistirilmistir. Standart bir web sitesinden ziyade, modern bir web uygulamasi (Web App) reflekslerine sahiptir.
+This project was carefully engineered to maximize User Experience (UX) and User Interface (UI) design without compromising on performance. It responds and feels less like a standard website and more like a modern, highly polished Web App.
