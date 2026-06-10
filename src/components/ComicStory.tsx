@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import SplitText from "./SplitText";
-import { Battery, Zap, Rocket, Trophy, Brain, Activity, Dumbbell, Flame, TrendingUp, Dna, Droplets, FlaskConical, Moon, Leaf, RefreshCw, Target, ChevronRight, CheckCircle } from "lucide-react";
+import { ChevronRight, CheckCircle } from "lucide-react";
 
 const PANELS = [
   {
@@ -11,24 +11,23 @@ const PANELS = [
     title: "ÇÖKÜŞ",
     color: "#1a1c23",
     accent: "#6B7280",
-    question: "Daha antrenmana başlamadan neden bu kadar yorgun hissediyorum?",
-    emoji: <Battery className="w-10 h-10 text-white" />,
+    emoji: <span className="font-comic text-5xl text-comicGrayLight shadow-[3px_3px_0_#000] -rotate-6">01</span>,
     badge: "BAŞLANGIÇ",
     badgeColor: "#000",
     badgeText: "white" as const,
     steps: [
       {
-        icon: <Brain className="w-6 h-6 text-comicOrange" />,
+        icon: <span className="font-comic text-2xl text-comicOrange font-black italic">#1</span>,
         heading: "BEYİN SİSİ",
         body: "Odaklanma sorunu, gün içi sürekli yorgunluk hissi."
       },
       {
-        icon: <Activity className="w-6 h-6 text-comicOrange" />,
+        icon: <span className="font-comic text-2xl text-comicOrange font-black italic">#2</span>,
         heading: "YAVAŞ METABOLİZMA",
         body: "Kilo vermekte zorlanma, düşük enerji seviyeleri."
       },
       {
-        icon: <Dumbbell className="w-6 h-6 text-comicOrange" />,
+        icon: <span className="font-comic text-2xl text-comicOrange font-black italic">#3</span>,
         heading: "GÜÇ KAYBI",
         body: "Antrenmanlarda tükenmişlik ve performans düşüklüğü."
       }
@@ -41,23 +40,23 @@ const PANELS = [
     color: "#D32F2F",
     accent: "#FFD700",
     question: "İlk dozu aldığında vücudunda ne tetiklenir?",
-    emoji: <Zap className="w-10 h-10 text-white" />,
+    emoji: <span className="font-comic text-5xl text-comicYellow shadow-[3px_3px_0_#000] rotate-6">02</span>,
     badge: "30 DAKİKA",
     badgeColor: "#FFD700",
     badgeText: "black" as const,
     steps: [
       {
-        icon: <Flame className="w-6 h-6 text-comicYellow" />,
+        icon: <span className="font-comic text-2xl text-comicYellow font-black italic">#1</span>,
         heading: "HIZLI EMİLİM",
         body: "Etken maddeler 15 dakikada kana karışmaya başlar."
       },
       {
-        icon: <TrendingUp className="w-6 h-6 text-comicYellow" />,
+        icon: <span className="font-comic text-2xl text-comicYellow font-black italic">#2</span>,
         heading: "ATP ARTIŞI",
         body: "Hücresel enerji üretimi maksimize edilir."
       },
       {
-        icon: <Dna className="w-6 h-6 text-comicYellow" />,
+        icon: <span className="font-comic text-2xl text-comicYellow font-black italic">#3</span>,
         heading: "SİNİR SİSTEMİ UYARISI",
         body: "Merkezi sinir sistemi aktive olur, reaksiyon süresi kısalır."
       }
@@ -70,23 +69,23 @@ const PANELS = [
     color: "#FF5F1F",
     accent: "#1F2833",
     question: "Düzenli kullanımda kas anatomisi nasıl değişir?",
-    emoji: <Rocket className="w-10 h-10 text-white" />,
+    emoji: <span className="font-comic text-5xl text-white shadow-[3px_3px_0_#000] -rotate-3">03</span>,
     badge: "14 GÜN",
     badgeColor: "#1F2833",
     badgeText: "white" as const,
     steps: [
       {
-        icon: <Droplets className="w-6 h-6 text-comicGray" />,
+        icon: <span className="font-comic text-2xl text-comicGray font-black italic">#1</span>,
         heading: "HİPERTROFİ",
         body: "Kas liflerinde mikro yırtıklar hızla onarılır ve kalınlaşır."
       },
       {
-        icon: <FlaskConical className="w-6 h-6 text-comicGray" />,
+        icon: <span className="font-comic text-2xl text-comicGray font-black italic">#2</span>,
         heading: "NOX ÜRETİMİ",
         body: "Nitrik oksit seviyesi artar, damarlanma ve 'pump' hissi kalıcı hale gelir."
       },
       {
-        icon: <Moon className="w-6 h-6 text-comicGray" />,
+        icon: <span className="font-comic text-2xl text-comicGray font-black italic">#3</span>,
         heading: "DERİN TOPARLANMA",
         body: "REM uykusu kalitesi artar, kas inşası gece boyunca devam eder."
       }
@@ -99,23 +98,23 @@ const PANELS = [
     color: "#FFD700",
     accent: "#D32F2F",
     question: "Genetik potansiyelinin zirvesine ulaştığında ne olur?",
-    emoji: <Trophy className="w-10 h-10 text-black" />,
+    emoji: <span className="font-comic text-5xl text-black shadow-[3px_3px_0_#FFF] rotate-3">04</span>,
     badge: "90 GÜN",
     badgeColor: "#D32F2F",
     badgeText: "white" as const,
     steps: [
       {
-        icon: <Leaf className="w-6 h-6 text-comicRed" />,
+        icon: <span className="font-comic text-2xl text-comicRed font-black italic">#1</span>,
         heading: "KUSURSUZ YAĞ YAKIMI",
         body: "Bazal metabolizma hızı zirvededir, yağ oranı minimuma iner."
       },
       {
-        icon: <RefreshCw className="w-6 h-6 text-comicRed" />,
+        icon: <span className="font-comic text-2xl text-comicRed font-black italic">#2</span>,
         heading: "BİTMEK BİLMEYEN DAYANIKLILIK",
         body: "Laktik asit birikimi gecikir, antrenman hacmi ikiye katlanır."
       },
       {
-        icon: <Target className="w-6 h-6 text-comicRed" />,
+        icon: <span className="font-comic text-2xl text-comicRed font-black italic">#3</span>,
         heading: "ZİHİNSEL KESİNLİK",
         body: "Sadece kaslar değil, beyin de %100 kapasiteyle çalışır."
       }

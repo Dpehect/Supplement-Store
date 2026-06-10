@@ -15,7 +15,7 @@ import PRODUCTS, { ProductType } from "@/data/products";
 import ProductDetailModal from "@/components/ProductDetailModal";
 import HoverWaveImage from "@/components/HoverWaveImage";
 import Preloader from "@/components/Preloader";
-import { ArrowRight, Star, X, Check, Flame, AlertCircle } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -237,6 +237,17 @@ function HomeContent() {
           );
         }
       }
+
+      gsap.to(".dynamic-bg", {
+        backgroundColor: "#E8DAC3", // A deeper beige shade
+        scrollTrigger: {
+          trigger: document.body,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+        }
+      });
+
     }, heroContainerRef);
 
     return () => ctx.revert();
@@ -255,7 +266,7 @@ function HomeContent() {
 
       <section
         ref={heroContainerRef}
-        className="relative min-h-[calc(100vh-80px)] w-full border-b-4 border-black flex flex-col lg:flex-row items-center justify-between py-12 px-6 md:px-12 bg-comicBlack overflow-hidden"
+        className="dynamic-bg relative min-h-[calc(100vh-80px)] w-full border-b-4 border-black flex flex-col lg:flex-row items-center justify-between py-12 px-6 md:px-12 bg-comicBlack overflow-hidden"
       >
         <div className="absolute inset-0 bg-halftone-orange opacity-[0.08] pointer-events-none z-0"></div>
         <div className="bg-speedlines absolute w-[180%] h-[180%] top-[-40%] left-[-40%] opacity-[0.25] z-0 pointer-events-none">
@@ -376,7 +387,7 @@ function HomeContent() {
         rotate="-rotate-1"
       />
 
-      <section id="products" className="py-24 px-6 md:px-12 bg-comicBlack border-b-4 border-black relative">
+      <section id="products" className="dynamic-bg py-24 px-6 md:px-12 bg-comicBlack border-b-4 border-black relative overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col items-center text-center mb-16">
             <div className="motion-rect-b relative inline-block transform -rotate-2 -skew-x-1 mb-4 px-6 py-2">
@@ -430,7 +441,7 @@ function HomeContent() {
 
       <ComicStory />
 
-      <section id="why-us" className="py-24 px-6 md:px-12 bg-comicBlack border-b-4 border-black relative overflow-hidden">
+      <section id="why-us" className="dynamic-bg py-24 px-6 md:px-12 bg-comicBlack border-b-4 border-black relative overflow-hidden">
         <div className="absolute inset-0 bg-halftone-orange opacity-[0.05] pointer-events-none"></div>
         
         <div className="max-w-6xl mx-auto">
@@ -465,7 +476,7 @@ function HomeContent() {
               <div className="absolute inset-0 bg-halftone-black opacity-[0.08] pointer-events-none"></div>
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <AlertCircle className="w-10 h-10 text-zinc-500" />
+                  <span className="font-comic text-4xl text-zinc-500 -rotate-6 shadow-[2px_2px_0_#000]">?</span>
                   <h3 className="font-comic text-2xl md:text-3xl text-zinc-600 uppercase tracking-wide">
                     SIRADAN MARKALAR
                   </h3>
@@ -473,7 +484,7 @@ function HomeContent() {
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-3">
-                    <X className="w-6 h-6 text-comicRed font-bold mt-0.5" />
+                    <span className="font-comic text-2xl text-comicRed mr-2 leading-none -rotate-2">NO!</span>
                     <div>
                       <h4 className="font-comic text-base uppercase text-zinc-700 tracking-wide">Tescilli Karışımlar</h4>
                       <p className="font-sans text-xs text-zinc-600 font-semibold leading-relaxed">
@@ -483,7 +494,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <X className="w-6 h-6 text-comicRed font-bold mt-0.5" />
+                    <span className="font-comic text-2xl text-comicRed mr-2 leading-none -rotate-2">NO!</span>
                     <div>
                       <h4 className="font-comic text-base uppercase text-zinc-700 tracking-wide">Etkisiz Etken Maddeler</h4>
                       <p className="font-sans text-xs text-zinc-600 font-semibold leading-relaxed">
@@ -493,7 +504,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <X className="w-6 h-6 text-comicRed font-bold mt-0.5" />
+                    <span className="font-comic text-2xl text-comicRed mr-2 leading-none -rotate-2">NO!</span>
                     <div>
                       <h4 className="font-comic text-base uppercase text-zinc-700 tracking-wide">Gereksiz Kafein ve Stimülanlar</h4>
                       <p className="font-sans text-xs text-zinc-600 font-semibold leading-relaxed">
@@ -517,7 +528,7 @@ function HomeContent() {
 
               <div className="pt-4">
                 <div className="flex items-center gap-3 mb-6">
-                  <Flame className="w-10 h-10 text-black fill-comicOrange" />
+                  <span className="font-comic text-4xl text-comicOrange rotate-6 shadow-[2px_2px_0_#000]">!</span>
                   <h3 className="font-comic text-2xl md:text-3xl text-black uppercase tracking-wide">
                     WEIDER STANDARTLARI
                   </h3>
@@ -525,7 +536,7 @@ function HomeContent() {
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-3">
-                    <Check className="w-6 h-6 text-green-700 font-bold mt-0.5" />
+                    <span className="font-comic text-2xl text-green-600 mr-2 leading-none rotate-2">YES!</span>
                     <div>
                       <h4 className="font-comic text-base uppercase text-black tracking-wide">%100 Şeffaf İçerik</h4>
                       <p className="font-sans text-xs text-black/80 font-bold leading-relaxed">
@@ -535,7 +546,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Check className="w-6 h-6 text-green-700 font-bold mt-0.5" />
+                    <span className="font-comic text-2xl text-green-600 mr-2 leading-none rotate-2">YES!</span>
                     <div>
                       <h4 className="font-comic text-base uppercase text-black tracking-wide">Klinik Olarak Kanıtlanmış Dozajlar</h4>
                       <p className="font-sans text-xs text-black/80 font-bold leading-relaxed">
@@ -545,7 +556,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Check className="w-6 h-6 text-green-700 font-bold mt-0.5" />
+                    <span className="font-comic text-2xl text-green-600 mr-2 leading-none rotate-2">YES!</span>
                     <div>
                       <h4 className="font-comic text-base uppercase text-black tracking-wide">Maksimum Biyoyararlanım</h4>
                       <p className="font-sans text-xs text-black/80 font-bold leading-relaxed">
