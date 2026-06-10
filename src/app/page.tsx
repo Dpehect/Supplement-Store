@@ -707,7 +707,9 @@ function HomeContent() {
             * BU BEYANLAR GIDA VE İLAÇ DAİRESİ (FDA) TARAFINDAN DEĞERLENDİRİLMEMİŞTİR. BU ÜRÜNLER HERHANGİ BİR HASTALIĞI TEŞHİS ETMEK, TEDAVİ ETMEK VEYA ÖNLEMEK AMACI TAŞIMAZ.
           </p>
           <p>
-            &copy; {new Date().getFullYear()} SOFTBRIDGE SUPPLEMENTS INC. ALL RIGHTS RESERVED.
+            &copy; {new Date().getFullYear()} SOFTBRIDGE SUPPLEMENTS. ALL RIGHTS RESERVED.
+            <br />
+            <span className="text-gray-600 mt-1 inline-block">DESIGNED & DEVELOPED BY SOFTBRIDGE SOLUTIONS.</span>
           </p>
         </div>
       </footer>
