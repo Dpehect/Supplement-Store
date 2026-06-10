@@ -34,8 +34,8 @@ function sampleTextPositions(w: number, h: number) {
 
   const font =
     '"Inter", "SF Pro Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif';
-  const mainSize = Math.round(Math.min(w * 0.09, 100));
-  const subSize = Math.round(Math.min(w * 0.024, 20));
+  const mainSize = Math.round(Math.min(w * 0.13, 150));
+  const subSize = Math.round(Math.min(w * 0.035, 28));
   const centerY = h * 0.47;
 
   ctx.fillStyle = "#000";
@@ -170,8 +170,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
 
     const font =
       '"Inter", "SF Pro Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif';
-    const mainSize = Math.round(Math.min(W * 0.09, 100));
-    const subSize = Math.round(Math.min(W * 0.024, 20));
+    const mainSize = Math.round(Math.min(W * 0.13, 150));
+    const subSize = Math.round(Math.min(W * 0.035, 28));
     const centerY = H * 0.47;
     const subText = "Supplements";
 

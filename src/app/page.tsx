@@ -62,12 +62,6 @@ function HomeContent() {
 
     const startPreloader = () => {
       if (document.visibilityState !== "hidden") {
-        try {
-          if (sessionStorage.getItem("preloaderSeen")) {
-            setLoading(false);
-            return;
-          }
-        } catch {}
         setLoading(true);
       }
     };
@@ -237,7 +231,6 @@ function HomeContent() {
   return (
     <>
       {!skipPreloader && loading && <Preloader onComplete={() => {
-        try { sessionStorage.setItem("preloaderSeen", "1"); } catch {}
         setLoading(false);
       }} />}
       <div 
@@ -263,21 +256,21 @@ function HomeContent() {
         <div className="relative z-10 max-w-xl lg:max-w-2xl text-left flex flex-col justify-center order-2 lg:order-1 mt-8 lg:mt-0">
           <div className="inline-block bg-comicRed border-2 border-black px-4 py-1.5 -skew-x-12 transform rotate-1 mb-6 shadow-comic max-w-max">
             <span className="font-comic text-base md:text-lg text-white font-extrabold uppercase tracking-widest">
-              DİKKAT: YÜKSEK ETKEN MADDE FORMÜLÜ!
+              DİKKAT: KLİNİK DOZAJLI ŞEFFAF FORMÜL
             </span>
           </div>
 
           <h1 className="font-comic text-4xl md:text-6xl text-black tracking-wider leading-none mb-6">
             <span className="block overflow-hidden h-[65px] md:h-[95px] pt-3">
-              <span className="hero-headline-1 inline-block text-stroke-black">İÇİNDEKİ GÜCÜ</span>
+              <span className="hero-headline-1 inline-block text-stroke-black">POTANSİYELİNİ</span>
             </span>
             <span className="block overflow-hidden h-[65px] md:h-[95px] pt-3 text-comicOrange">
-              <span className="hero-headline-2 inline-block text-stroke-black">SERBEST BIRAK!</span>
+              <span className="hero-headline-2 inline-block text-stroke-black">ZİRVEYE TAŞI!</span>
             </span>
           </h1>
 
           <p className="font-sans text-base md:text-lg font-bold text-comicGray leading-relaxed mb-8 max-w-lg">
-            Proprietary Blend (gizli formül) yok. Ucuz dolgu maddesi yok. Sadece antrenmanda yorgunluğu geciktirmek ve performansını zirveye taşımak için klinik olarak test edilmiş, şeffaf formüller var.
+            Tescilli karışım (Gizli formül) kullanmıyoruz. Ucuz dolgu maddelerine yer yok. Sadece antrenman yorgunluğunu ertelemek ve performansınızı zirveye taşımak için klinik dozajları kanıtlanmış, tamamen şeffaf içerikler sunuyoruz.
           </p>
 
           <div className="flex flex-wrap gap-4 items-center">
@@ -380,7 +373,7 @@ function HomeContent() {
               <div className="motion-still absolute inset-0 bg-comicYellow border-4 border-black -z-10 rounded-xl shadow-comic"></div>
             </div>
             <p className="font-sans text-comicOrange font-bold text-lg md:text-xl uppercase tracking-widest mt-4">
-              HEDEFİNE UYGUN DİNAMİK FORMÜLÜ SEÇ
+              HEDEFİNİZE UYGUN PROFESYONEL FORMÜLÜ SEÇİN
             </p>
           </div>
 
