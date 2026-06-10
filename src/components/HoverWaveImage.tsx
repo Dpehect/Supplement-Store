@@ -347,15 +347,22 @@ export default function HoverWaveImage({
     };
   }, [imageSrc, intensity]);
 
-  const updatePointer = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "touch") return;
-
+  const updatePointer = (event: PointerEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     const shell = shellRef.current;
     if (!shell) return;
 
     const rect = shell.getBoundingClientRect();
-    const nextX = (event.clientX - rect.left) / rect.width;
-    const nextY = 1 - (event.clientY - rect.top) / rect.height;
+    let clientX, clientY;
+    if ("touches" in event) {
+      clientX = event.touches[0].clientX;
+      clientY = event.touches[0].clientY;
+    } else {
+      clientX = event.clientX;
+      clientY = event.clientY;
+    }
+
+    const nextX = (clientX - rect.left) / rect.width;
+    const nextY = 1 - (clientY - rect.top) / rect.height;
     const pointer = pointerRef.current;
 
     pointer.targetVelocityX = (nextX - pointer.targetX) * 2.4;
@@ -380,6 +387,9 @@ export default function HoverWaveImage({
       onPointerEnter={updatePointer}
       onPointerMove={updatePointer}
       onPointerLeave={calmPointer}
+      onTouchStart={updatePointer}
+      onTouchMove={updatePointer}
+      onTouchEnd={calmPointer}
     >
       <NextImage
         src={src}
