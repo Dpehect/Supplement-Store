@@ -513,11 +513,11 @@ function HomeContent() {
             >
               <div className="absolute inset-0 bg-halftone-orange opacity-[0.15] pointer-events-none"></div>
               
-              <div className="absolute -top-4 -right-4 bg-comicRed text-white border-2 border-black rounded-xl font-comic text-xs px-3 py-1 rotate-12 shadow-comic font-black uppercase">
+              <div className="absolute -top-4 -right-4 z-20 bg-comicRed text-white border-2 border-black rounded-xl font-comic text-xs px-3 py-1 rotate-12 shadow-comic font-black uppercase">
                 ZİRVE GÜÇ!
               </div>
 
-              <div>
+              <div className="pt-4">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-4xl">🔥</span>
                   <h3 className="font-comic text-2xl md:text-3xl text-black uppercase tracking-wide">
@@ -572,7 +572,7 @@ function HomeContent() {
           <div className="text-center mb-16">
             <div className="motion-rect-b relative inline-block transform rotate-1 skew-x-1 mb-4 px-6 py-2">
               <SplitText
-                text="DÜNYA GENELİ YORUMLAR"
+                text="DÜNYA GENELI YORUMLAR"
                 className="font-lilita text-3xl md:text-5xl text-white text-stroke-thick tracking-wider block relative z-10"
                 animation="bounce"
                 stagger={0.05}

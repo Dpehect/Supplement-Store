@@ -2,9 +2,10 @@
 
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { Eye } from "lucide-react";
+import { Eye, ShoppingCart } from "lucide-react";
 import { ProductType } from "@/data/products";
 import HoverWaveImage from "@/components/HoverWaveImage";
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
   product: ProductType;
@@ -19,6 +20,7 @@ const CATEGORY_MAP: Record<string, string> = {
 };
 
 export default function ProductCard({ product, onSelect }: ProductCardProps) {
+  const { addToCart } = useCart();
   const cardRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
@@ -182,18 +184,33 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
             </span>
           </div>
 
-          <button
-            type="button"
-            aria-label={`${product.name} detayını aç`}
-            onClick={(event) => {
-              event.stopPropagation();
-              onSelect?.();
-            }}
-            className="flex items-center gap-2 border-2 border-black bg-white px-4 py-1.5 font-comic text-lg text-black shadow-comic transition-all hover:bg-comicOrange active:translate-x-0.5 active:translate-y-0.5 active:shadow-none"
-          >
-            <Eye className="h-4 w-4" />
-            <span>DETAY</span>
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                addToCart(product);
+              }}
+              className="flex items-center gap-1 border-2 border-black bg-comicYellow px-2 md:px-3 py-1.5 font-comic text-sm text-black shadow-[2px_2px_0_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all hover:bg-comicOrange"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              <span className="hidden sm:inline">SEPETE EKLE</span>
+              <span className="sm:hidden">EKLE</span>
+            </button>
+
+            <button
+              type="button"
+              aria-label={`${product.name} detayını aç`}
+              onClick={(event) => {
+                event.stopPropagation();
+                onSelect?.();
+              }}
+              className="flex items-center gap-1 border-2 border-black bg-white px-2 md:px-3 py-1.5 font-comic text-sm text-black shadow-[2px_2px_0_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all hover:bg-gray-100"
+            >
+              <Eye className="h-4 w-4" />
+              <span>DETAY</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

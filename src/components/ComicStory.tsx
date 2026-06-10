@@ -130,15 +130,16 @@ function PanelContent({ panel, onClose }: { panel: typeof PANELS[0]; onClose: ()
 
       {allDone ? (
         <div
-          className="mt-2 text-center font-comic text-base uppercase tracking-wide rounded-xl py-2.5 border-2 border-black"
+          className="mt-4 text-center font-comic text-base uppercase tracking-wide rounded-xl py-2.5 border-2 border-black shadow-[2px_2px_0_#000]"
           style={{ background: panel.accent, color: panel.badgeText === "black" ? "#000" : "#fff" }}
         >
-          ✅ PANEL AÇILDI — BİR SONRAKİNE GEÇ!
+          ✅ TÜM BİLGİLER AÇILDI
         </div>
       ) : (
-        <p className="text-center font-sans text-[10px] text-white/35 mt-1 italic animate-pulse">
-          Kartları sırayla açmak için panelde herhangi bir yere tıkla…
-        </p>
+        <div className="flex items-center justify-center gap-2 text-center font-sans text-xs font-bold text-white/60 mt-3 p-2 rounded-lg bg-white/5 border border-white/10 animate-pulse">
+          <span className="text-lg animate-bounce">👆</span>
+          <span>SIRADAKİ BİLGİ İÇİN TIKLA</span>
+        </div>
       )}
     </div>
   );
@@ -161,13 +162,13 @@ function GamePanel({
         relative overflow-hidden rounded-2xl border-4 border-black flex flex-col
         transition-all duration-400 select-none
         ${isActive
-          ? "shadow-[8px_8px_0_#000] scale-[1.01]"
+          ? "shadow-[8px_8px_0_#000] scale-[1.01] bg-opacity-95 ring-4 ring-comicOrange/30"
           : "shadow-[4px_4px_0_#000] hover:scale-[1.015] cursor-pointer hover:shadow-[6px_6px_0_#000]"}
       `}
       style={{ background: panel.color }}
       onClick={!isActive ? onOpen : undefined}
     >
-      <div className="absolute inset-0 bg-halftone-black opacity-20 pointer-events-none" />
+      <div className={`absolute inset-0 bg-halftone-black opacity-20 pointer-events-none ${isActive ? 'animate-pulse' : ''}`} />
 
       <span
         className="absolute top-3 right-3 z-10 font-comic text-xs px-3 py-1 rounded-lg border-2 border-black font-black uppercase shadow-[2px_2px_0_#000]"
@@ -206,10 +207,14 @@ function GamePanel({
 }
 
 export default function ComicStory() {
-  const [activePanel, setActivePanel] = useState<string | null>(PANELS[0].id);
+  const [activePanels, setActivePanels] = useState<string[]>([PANELS[0].id]);
 
-  const open  = (id: string) => setActivePanel(id);
-  const close = ()           => setActivePanel(null);
+  const open  = (id: string) => {
+    setActivePanels(prev => prev.includes(id) ? prev : [...prev, id]);
+  };
+  const close = (id: string) => {
+    setActivePanels(prev => prev.filter(p => p !== id));
+  };
 
   return (
     <section
@@ -229,8 +234,8 @@ export default function ComicStory() {
           <p className="font-sans text-comicOrange font-bold text-lg md:text-xl uppercase tracking-widest mb-1">
             BİR PANELE TIKLA — İŞİN BİLİMİNİ ÇÖZ
           </p>
-          <p className="font-sans text-sm text-white/40 italic">
-            Açmak için dokun · Kartları teker teker açmak için içine tıkla · Aynı anda tek bir panel açık kalır
+          <p className="font-sans text-sm text-white/60 italic">
+            Bir panel açtığında kapanmaz, böylece bilgileri karşılaştırabilirsin. Açılan panel içinde bilgi kartlarını görmek için panelin içine tıklamaya devam et.
           </p>
         </div>
 
@@ -239,9 +244,9 @@ export default function ComicStory() {
             <GamePanel
               key={panel.id}
               panel={panel}
-              isActive={activePanel === panel.id}
+              isActive={activePanels.includes(panel.id)}
               onOpen={() => open(panel.id)}
-              onClose={close}
+              onClose={() => close(panel.id)}
             />
           ))}
         </div>
@@ -252,8 +257,8 @@ export default function ComicStory() {
               Şu An Açık:
             </span>
             <span className="font-comic text-white text-base">
-              {activePanel
-                ? PANELS.find(p => p.id === activePanel)?.title ?? "—"
+              {activePanels.length > 0
+                ? activePanels.map(id => PANELS.find(p => p.id === id)?.title).join(", ")
                 : "Yok"}
             </span>
           </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Bangers, Comic_Neue, Lilita_One } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./Providers";
+import CartSidebar from "@/components/CartSidebar";
 
 const bangers = Bangers({
   weight: "400",
@@ -39,7 +41,10 @@ export default function RootLayout({
       <body
         className={`${bangers.variable} ${comicNeue.variable} ${lilitaOne.variable} font-sans antialiased text-black bg-comicBlack`}
       >
-        {children}
+        <Providers>
+          {children}
+          <CartSidebar />
+        </Providers>
       </body>
     </html>
   );

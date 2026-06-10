@@ -1,9 +1,12 @@
 "use client";
 
 import React from "react";
-import { Zap } from "lucide-react";
+import { Zap, ShoppingCart } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 export default function Header() {
+  const { items, setIsCartOpen } = useCart();
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -58,8 +61,20 @@ export default function Header() {
 
       <div className="flex items-center gap-4">
         <button
+          onClick={() => setIsCartOpen(true)}
+          className="relative flex items-center justify-center p-2 rounded-xl bg-white border-3 border-black shadow-[4px_4px_0_#000] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+        >
+          <ShoppingCart className="w-6 h-6 text-black" />
+          {totalItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-comicRed text-white font-black text-xs w-5 h-5 flex items-center justify-center rounded-full border-2 border-black">
+              {totalItems}
+            </span>
+          )}
+        </button>
+
+        <button
           onClick={() => scrollToSection("products")}
-          className="group relative flex items-center gap-2 bg-comicYellow hover:bg-comicOrange text-black font-comic text-lg md:text-xl px-5 py-2 border-3 border-black rounded-xl shadow-comic active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+          className="group relative hidden md:flex items-center gap-2 bg-comicYellow hover:bg-comicOrange text-black font-comic text-lg md:text-xl px-5 py-2 border-3 border-black rounded-xl shadow-[4px_4px_0_#000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
           data-cursor="HEMEN AL!"
         >
           <Zap className="w-5 h-5 fill-black animate-pulse group-hover:rotate-12 duration-200" />
