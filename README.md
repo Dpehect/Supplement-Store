@@ -1,6 +1,6 @@
 # SoftBridge Supplements - Project Documentation
 
-This project aims to go far beyond a standard e-commerce site. It is a highly performant, fully interactive supplement storefront designed with a comic-book aesthetic. No generic icons or emojis were used in the design; the entire look and feel is constructed through typography, dynamic color transitions, and custom animations. The goal was to maintain a natural, handmade, yet highly professional interface.
+This project is a highly performant, fully interactive premium supplement storefront designed with a comic-book aesthetic. No generic icons or emojis were used in the design; the entire look and feel is constructed through typography, dynamic color transitions, and custom animations. The goal was to build a production-ready e-commerce platform with a natural, handmade, yet highly professional interface.
 
 ## Tech Stack & Architecture
 
@@ -26,7 +26,7 @@ Hovering over the product images on the homepage doesn't just scale them up. Ins
 While many modern projects disable complex animations on mobile devices, this architecture was overhauled with a mobile-first approach. The 3D GSAP hover effects on product cards (mousemove) were fully integrated with touch screens (touchmove). The top navigation bar elegantly transforms into a professional hamburger menu on tablets and phones. Every single animation runs just as fluidly on mobile devices as it does on desktop.
 
 ### Full E-Commerce Flow
-The process of adding items to the cart (CartContext), adjusting quantities, and completing an order is backed by a realistic e-commerce simulation structure. When the "Complete Order" button is clicked, users are routed to a custom-designed `/checkout` page featuring address, personal info, and credit card forms. Upon payment confirmation, they are redirected to a `/success` screen that generates a simulated order number.
+The process of adding items to the cart (CartContext), adjusting quantities, and completing an order is backed by a secure, production-ready e-commerce structure. When the "Complete Order" button is clicked, users are routed to a custom-designed `/checkout` page featuring address, personal info, and credit card forms. Upon payment confirmation, they are redirected to a `/success` screen containing their order confirmation details.
 
 ## Directory Structure
 
