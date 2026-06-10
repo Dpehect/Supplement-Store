@@ -707,7 +707,7 @@ function HomeContent() {
             * BU BEYANLAR GIDA VE İLAÇ DAİRESİ (FDA) TARAFINDAN DEĞERLENDİRİLMEMİŞTİR. BU ÜRÜNLER HERHANGİ BİR HASTALIĞI TEŞHİS ETMEK, TEDAVİ ETMEK VEYA ÖNLEMEK AMACI TAŞIMAZ.
           </p>
           <p>
-            &copy; {new Date().getFullYear()} WEIDER SUPPLEMENTS INC. TÜM HAKLARI SAKLIDIR. WEIDER BURGERS ÇİZİMLERİNDEN ESİNLENİLMİŞTİR.
+            &copy; {new Date().getFullYear()} SOFTBRIDGE SUPPLEMENTS INC. ALL RIGHTS RESERVED.
           </p>
         </div>
       </footer>
