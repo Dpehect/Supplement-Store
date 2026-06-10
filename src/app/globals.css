@@ -3,19 +3,299 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FAF6EE;
+  --foreground: #111116;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+.bg-comicBlack {
+  background-color: #FAF6EE !important;
+}
+
+/* Halftone Dot Patterns */
+.bg-halftone-orange {
+  background-image: radial-gradient(rgba(255, 95, 31, 0.25) 15%, transparent 16%);
+  background-size: 12px 12px;
+}
+
+.bg-halftone-black {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15) 15%, transparent 16%);
+  background-size: 14px 14px;
+}
+
+.bg-halftone-red {
+  background-image: radial-gradient(rgba(211, 47, 47, 0.2) 15%, transparent 16%);
+  background-size: 12px 12px;
+}
+
+/* Comic Text Outline */
+.text-stroke-black {
+  -webkit-text-stroke: 2px #000000;
+  text-shadow: 2px 2px 0px #000000;
+}
+
+.text-stroke-thick {
+  -webkit-text-stroke: 3px #000000;
+  text-shadow: 4px 4px 0px #000000;
+}
+
+.text-stroke-red {
+  -webkit-text-stroke: 2px #D32F2F;
+  text-shadow: 2px 2px 0px #000000;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF6EE;
+  border-left: 2px solid #000000;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF5F1F;
+  border: 2px solid #000000;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D32F2F;
+}
+
+/* ── Floating keyframes ─────────────────────────────── */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px)   rotate(0deg); }
+  33%       { transform: translateY(-14px) rotate(2deg); }
+  66%       { transform: translateY(-6px)  rotate(-2deg); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0px)   rotate(0deg); }
+  40%       { transform: translateY(-10px) rotate(-3deg); }
+  70%       { transform: translateY(-18px) rotate(2deg); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0px)  scale(1); }
+  50%       { transform: translateY(-8px) scale(1.04); }
+}
+@keyframes float-x {
+  0%, 100% { transform: translateX(0px)  rotate(0deg); }
+  50%       { transform: translateX(12px) rotate(5deg); }
+}
+
+.float-slow   { animation: float-slow   5s ease-in-out infinite; }
+.float-medium { animation: float-medium 4s ease-in-out infinite; }
+.float-fast   { animation: float-fast   3s ease-in-out infinite; }
+.float-x      { animation: float-x      6s ease-in-out infinite; }
+
+/* Subtle site-wide rectangle motion */
+@keyframes rect-drift-a {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  45%      { translate: 0 -3px; rotate: 0.35deg; }
+  72%      { translate: 2px -1px; rotate: -0.22deg; }
+}
+
+@keyframes rect-drift-b {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  38%      { translate: -2px -2px; rotate: -0.28deg; }
+  70%      { translate: 2px 1px; rotate: 0.24deg; }
+}
+
+@keyframes rect-drift-c {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50%      { translate: 1px -2px; rotate: 0.2deg; }
+}
+
+@keyframes product-card-drift {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  42%      { translate: 0 -5px; rotate: 0.28deg; }
+  74%      { translate: 2px -2px; rotate: -0.2deg; }
+}
+
+.motion-field .shadow-comic,
+.motion-field .shadow-comic-lg,
+.motion-rect,
+.motion-rect-b,
+.motion-rect-c {
+  animation: rect-drift-a 8.5s ease-in-out infinite;
+  transform-origin: center;
+  will-change: translate, rotate;
+}
+
+.motion-field .shadow-comic-lg,
+.motion-rect-b {
+  animation-name: rect-drift-b;
+  animation-duration: 9.5s;
+}
+
+.motion-field button.shadow-comic,
+.motion-field button.shadow-comic-lg,
+.motion-rect-c {
+  animation-name: rect-drift-c;
+  animation-duration: 7.5s;
+}
+
+.motion-card {
+  animation: product-card-drift 10s ease-in-out infinite;
+  transform-origin: center;
+  will-change: translate, rotate;
+}
+
+.motion-card:nth-child(even),
+.motion-card-alt {
+  animation-duration: 11.5s;
+  animation-name: rect-drift-b;
+}
+
+.motion-still {
+  animation: none !important;
+  translate: 0 0;
+  rotate: 0deg;
+}
+
+/* WebGL liquid displacement image hover */
+.hover-wave-image {
+  cursor: grab;
+  isolation: isolate;
+  overflow: visible;
+  pointer-events: auto;
+}
+
+.hover-wave-image:active {
+  cursor: grabbing;
+}
+
+.hover-displace-image__canvas {
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-displace-image__canvas {
+    transition: none;
+  }
+
+  .motion-field .shadow-comic,
+  .motion-field .shadow-comic-lg,
+  .motion-rect,
+  .motion-rect-b,
+  .motion-rect-c,
+  .motion-card,
+  .motion-card-alt,
+  .motion-still {
+    animation: none !important;
+    translate: 0 0;
+    rotate: 0deg;
+  }
+}
+
+/* ── Scroll-reveal ─────────────────────────────────── */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(36px) scale(0.96);
+  transition: opacity 0.6s cubic-bezier(.22,1,.36,1),
+              transform 0.6s cubic-bezier(.22,1,.36,1);
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── Rounded comic image frames ─────────────────────── */
+.comic-img-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0 #000;
+}
+
+/* ── Interactive game panel ─────────────────────────── */
+@keyframes panel-pop {
+  0%   { transform: scale(0.92) rotate(-3deg); opacity: 0; }
+  60%  { transform: scale(1.04) rotate(1deg);  opacity: 1; }
+  100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
+}
+.panel-entering {
+  animation: panel-pop 0.38s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes info-slide {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.info-slide { animation: info-slide 0.3s ease forwards; }
+
+/* ── Global radius helpers ─────────────────────────── */
+.r-sm  { border-radius: 8px;  }
+.r-md  { border-radius: 14px; }
+.r-lg  { border-radius: 20px; }
+.r-xl  { border-radius: 28px; }
+
+/* ── Flying-across animations (left→right, right→left, diagonal) ── */
+@keyframes fly-lr {
+  0%   { transform: translateX(-160px) translateY(0)    rotate(-15deg) scale(0.7); opacity: 0; }
+  5%   { opacity: 0.85; }
+  95%  { opacity: 0.85; }
+  100% { transform: translateX(calc(100vw + 160px)) translateY(-40px) rotate(25deg) scale(1.1); opacity: 0; }
+}
+@keyframes fly-rl {
+  0%   { transform: translateX(calc(100vw + 160px)) translateY(0)     rotate(15deg) scale(0.7); opacity: 0; }
+  5%   { opacity: 0.85; }
+  95%  { opacity: 0.85; }
+  100% { transform: translateX(-160px)              translateY(30px)  rotate(-20deg) scale(1.1); opacity: 0; }
+}
+@keyframes fly-diag-tl {
+  0%   { transform: translate(-160px, -160px) rotate(-20deg) scale(0.6); opacity: 0; }
+  5%   { opacity: 0.8; }
+  95%  { opacity: 0.8; }
+  100% { transform: translate(calc(100vw + 160px), calc(100vh + 160px)) rotate(30deg) scale(1.2); opacity: 0; }
+}
+@keyframes fly-diag-tr {
+  0%   { transform: translate(calc(100vw + 160px), -160px) rotate(20deg) scale(0.6); opacity: 0; }
+  5%   { opacity: 0.8; }
+  95%  { opacity: 0.8; }
+  100% { transform: translate(-160px, calc(100vh + 160px)) rotate(-30deg) scale(1.2); opacity: 0; }
+}
+@keyframes fly-bt {
+  0%   { transform: translateY(calc(100vh + 160px)) translateX(20px)  rotate(10deg) scale(0.7); opacity: 0; }
+  5%   { opacity: 0.8; }
+  95%  { opacity: 0.8; }
+  100% { transform: translateY(-160px) translateX(-20px) rotate(-12deg) scale(1.1); opacity: 0; }
+}
+@keyframes fly-spin-lr {
+  0%   { transform: translateX(-160px)              rotate(0deg)   scale(0.8); opacity: 0; }
+  5%   { opacity: 0.9; }
+  95%  { opacity: 0.9; }
+  100% { transform: translateX(calc(100vw + 160px)) rotate(720deg) scale(1);   opacity: 0; }
+}
+
+/* ── Ticker Marquee scroll animations ──────────────── */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 75s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 75s linear infinite;
 }
