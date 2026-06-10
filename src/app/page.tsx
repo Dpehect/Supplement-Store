@@ -268,6 +268,8 @@ function HomeContent() {
         </div>
 
         <div className="relative z-10 max-w-xl lg:max-w-2xl text-left flex flex-col justify-center order-2 lg:order-1 mt-8 lg:mt-0">
+          <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-comicRed rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse-slow"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-72 h-72 bg-comicOrange rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-float-slow"></div>
           <div className="inline-block bg-comicRed border-2 border-black px-4 py-1.5 -skew-x-12 transform rotate-1 mb-6 shadow-comic max-w-max">
             <span className="font-comic text-base md:text-lg text-white font-extrabold uppercase tracking-widest">
               DİKKAT: KLİNİK DOZAJLI ŞEFFAF FORMÜL
@@ -359,7 +361,7 @@ function HomeContent() {
 
           <div
             ref={splatBadgeRef}
-            className="absolute -bottom-4 left-6 md:left-12 z-20 bg-comicYellow text-black border-3 border-black rounded-xl font-comic text-2xl md:text-4xl px-6 py-2 rotate-[-8deg] shadow-comic uppercase font-black"
+            className="absolute -top-12 -left-8 md:-left-12 rotate-[-15deg] z-10 animate-float-slow bg-comicYellow text-black border-3 border-black rounded-xl font-comic text-2xl md:text-4xl px-6 py-2 rotate-[-8deg] shadow-comic uppercase font-black"
           >
             BUM!
           </div>
@@ -433,7 +435,7 @@ function HomeContent() {
         
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 relative">
-            <div className="inline-block bg-comicRed border-3 border-black text-white px-6 py-1.5 -skew-x-12 transform -rotate-1 shadow-comic mb-4">
+            <div className="inline-block px-4 py-1.5 border-2 border-black font-sans font-black text-sm uppercase tracking-[0.2em] transform -skew-x-12 rotate-2 shadow-[2px_2px_0_#000] mb-8 animate-float bg-comicRed text-white">
               <span className="font-comic text-2xl font-black uppercase tracking-wider">
                 DEVRİMSEL FORMÜL
               </span>
@@ -458,7 +460,7 @@ function HomeContent() {
 
             <div 
               ref={rivalsRef}
-              className="bg-zinc-200 border-4 border-black rounded-2xl p-8 md:p-10 shadow-comic flex flex-col justify-between relative transform -rotate-1"
+              className="bg-zinc-200 border-4 border-black rounded-2xl p-8 md:p-10 shadow-comic flex flex-col justify-between relative transform -rotate-1 animate-float-slow"
             >
               <div className="absolute inset-0 bg-halftone-black opacity-[0.08] pointer-events-none"></div>
               <div>
@@ -509,13 +511,9 @@ function HomeContent() {
 
             <div 
               ref={weiderOutperformsRef}
-              className="bg-comicYellow border-4 border-black rounded-2xl p-8 md:p-10 shadow-comic-lg flex flex-col justify-between relative transform rotate-1"
+              className="bg-comicYellow border-4 border-black rounded-2xl p-8 md:p-10 shadow-comic-lg flex flex-col justify-between relative transform rotate-1 animate-float"
             >
               <div className="absolute inset-0 bg-halftone-orange opacity-[0.15] pointer-events-none"></div>
-              
-              <div className="absolute -top-4 -right-4 z-20 bg-comicRed text-white border-2 border-black rounded-xl font-comic text-xs px-3 py-1 rotate-12 shadow-comic font-black uppercase">
-                ZİRVE GÜÇ!
-              </div>
 
               <div className="pt-4">
                 <div className="flex items-center gap-3 mb-6">
@@ -650,7 +648,7 @@ function HomeContent() {
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
           
           <div className="max-w-md flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="bg-comicOrange border-2 border-black rounded-xl px-6 py-2 -skew-x-6 transform rotate-1 mb-6 shadow-comic">
+            <div className="bg-comicOrange border-2 border-black rounded-xl px-6 py-2 -skew-x-6 transform rotate-1 mb-6 shadow-comic animate-float">
               <span className="font-comic text-2xl md:text-3xl text-black font-black uppercase">
                 WEIDER KULÜBÜNE KATIL!
               </span>

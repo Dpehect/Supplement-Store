@@ -91,7 +91,7 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
     <div
       ref={cardRef}
       onClick={onSelect}
-      className="motion-card relative flex h-full min-h-[650px] cursor-pointer select-none flex-col justify-between overflow-visible rounded-2xl border-4 border-black bg-white p-6 shadow-comic transition-all duration-300 group hover:-translate-y-1 hover:shadow-comic-lg"
+      className="motion-card relative flex h-full min-h-[650px] cursor-pointer select-none flex-col justify-between overflow-visible rounded-2xl border-4 border-black bg-white p-6 shadow-comic transition-all duration-300 group hover:!translate-y-[-10px] hover:shadow-comic-lg animate-float-slow"
       style={{ transformStyle: "preserve-3d" }}
       data-cursor={product.badge}
       data-product-card={product.id}

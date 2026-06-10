@@ -78,19 +78,13 @@ const PANELS = [
   },
 ];
 
-function PanelContent({ panel, onClose }: { panel: typeof PANELS[0]; onClose: () => void }) {
+function PanelContent({ panel, onClose, onNextPanel, hasNextPanel }: { panel: typeof PANELS[0]; onClose: () => void; onNextPanel?: () => void; hasNextPanel: boolean }) {
   const [step, setStep] = useState(-1);
   const total = panel.steps.length;
   const allDone = step >= total - 1;
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (allDone) return;
-    setStep(s => s + 1);
-  };
-
   return (
-    <div className="relative z-10 px-5 pb-5 flex flex-col gap-2 flex-1" onClick={handleClick}>
+    <div className="relative z-10 px-5 pb-5 flex flex-col gap-2 flex-1">
       <div className="flex gap-1.5 mb-2 items-center">
         {Array.from({ length: total }).map((_, i) => (
           <div
@@ -128,19 +122,27 @@ function PanelContent({ panel, onClose }: { panel: typeof PANELS[0]; onClose: ()
         </div>
       ))}
 
-      {allDone ? (
-        <div
-          className="mt-4 text-center font-comic text-base uppercase tracking-wide rounded-xl py-2.5 border-2 border-black shadow-[2px_2px_0_#000]"
-          style={{ background: panel.accent, color: panel.badgeText === "black" ? "#000" : "#fff" }}
-        >
-          ✅ TÜM BİLGİLER AÇILDI
-        </div>
-      ) : (
-        <div className="flex items-center justify-center gap-2 text-center font-sans text-xs font-bold text-white/60 mt-3 p-2 rounded-lg bg-white/5 border border-white/10 animate-pulse">
-          <span className="text-lg animate-bounce">👆</span>
-          <span>SIRADAKİ BİLGİ İÇİN TIKLA</span>
-        </div>
-      )}
+      <div className="flex justify-end mt-4">
+        {!allDone ? (
+          <button 
+            onClick={(e) => { e.stopPropagation(); setStep(s => s + 1); }} 
+            className="bg-comicYellow text-black font-comic text-sm md:text-base px-6 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all uppercase flex items-center gap-2 animate-pulse-slow"
+          >
+            İLERİ ➔
+          </button>
+        ) : hasNextPanel ? (
+          <button 
+            onClick={(e) => { e.stopPropagation(); onNextPanel?.(); }} 
+            className="bg-white text-black font-comic text-sm md:text-base px-6 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all uppercase flex items-center gap-2 animate-bounce"
+          >
+            SONRAKİ PANELE GEÇ ➔
+          </button>
+        ) : (
+          <div className="bg-green-500 text-black font-comic text-sm px-4 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0_#000] uppercase text-center w-full">
+            ✅ TÜM BİLGİLERİ TAMAMLADIN
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -150,11 +152,15 @@ function GamePanel({
   isActive,
   onOpen,
   onClose,
+  onNextPanel,
+  hasNextPanel,
 }: {
   panel: typeof PANELS[0];
   isActive: boolean;
   onOpen: () => void;
   onClose: () => void;
+  onNextPanel?: () => void;
+  hasNextPanel: boolean;
 }) {
   return (
     <div
@@ -200,7 +206,7 @@ function GamePanel({
       )}
 
       {isActive && (
-        <PanelContent key={panel.id} panel={panel} onClose={onClose} />
+        <PanelContent key={panel.id} panel={panel} onClose={onClose} onNextPanel={onNextPanel} hasNextPanel={hasNextPanel} />
       )}
     </div>
   );
@@ -235,20 +241,26 @@ export default function ComicStory() {
             BİR PANELE TIKLA — İŞİN BİLİMİNİ ÇÖZ
           </p>
           <p className="font-sans text-sm text-white/60 italic">
-            Bir panel açtığında kapanmaz, böylece bilgileri karşılaştırabilirsin. Açılan panel içinde bilgi kartlarını görmek için panelin içine tıklamaya devam et.
+            Bir panel açtığında kapanmaz, böylece bilgileri karşılaştırabilirsin. Bilgi kartlarını görmek için İLERİ butonuna tıkla.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-          {PANELS.map(panel => (
-            <GamePanel
-              key={panel.id}
-              panel={panel}
-              isActive={activePanels.includes(panel.id)}
-              onOpen={() => open(panel.id)}
-              onClose={() => close(panel.id)}
-            />
-          ))}
+          {PANELS.map((panel, index) => {
+            const hasNextPanel = index < PANELS.length - 1;
+            const nextPanelId = hasNextPanel ? PANELS[index + 1].id : null;
+            return (
+              <GamePanel
+                key={panel.id}
+                panel={panel}
+                isActive={activePanels.includes(panel.id)}
+                onOpen={() => open(panel.id)}
+                onClose={() => close(panel.id)}
+                hasNextPanel={hasNextPanel}
+                onNextPanel={nextPanelId ? () => open(nextPanelId) : undefined}
+              />
+            )
+          })}
         </div>
 
         <div className="mt-8 flex justify-center">
