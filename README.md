@@ -82,18 +82,7 @@ Visual effects include radial-gradient halftone dot overlays (in orange, black, 
 
 ---
 
-## Running locally
 
-```bash
-npm install
-npm run dev
-```
-
-Opens on `http://localhost:3000`.
-
-To build for production: `npm run build` then `npm start`.
-
----
 
 ## License
 
