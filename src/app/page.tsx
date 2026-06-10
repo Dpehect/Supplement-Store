@@ -62,6 +62,12 @@ function HomeContent() {
 
     const startPreloader = () => {
       if (document.visibilityState !== "hidden") {
+        try {
+          if (sessionStorage.getItem("preloaderSeen")) {
+            setLoading(false);
+            return;
+          }
+        } catch {}
         setLoading(true);
       }
     };
@@ -230,7 +236,10 @@ function HomeContent() {
 
   return (
     <>
-      {!skipPreloader && loading && <Preloader onComplete={() => setLoading(false)} />}
+      {!skipPreloader && loading && <Preloader onComplete={() => {
+        try { sessionStorage.setItem("preloaderSeen", "1"); } catch {}
+        setLoading(false);
+      }} />}
       <div 
         className="motion-field min-h-screen flex flex-col font-sans select-none overflow-hidden relative"
         style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease" }}
