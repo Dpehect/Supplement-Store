@@ -35,7 +35,7 @@ function sampleTextPositions(w: number, h: number) {
   const font =
     '"Inter", "SF Pro Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif';
   const mainSize = Math.round(Math.min(w * 0.13, 150));
-  const subSize = Math.round(Math.min(w * 0.035, 28));
+  const subSize = Math.round(Math.min(w * 0.065, 55));
   const centerY = h * 0.47;
 
   ctx.fillStyle = "#000";
@@ -46,8 +46,8 @@ function sampleTextPositions(w: number, h: number) {
   ctx.fillText("SOFTBRIDGE", w / 2, centerY);
 
   const subText = "Supplements";
-  ctx.font = `300 ${subSize}px ${font}`;
-  const letterSpacing = subSize * 0.4;
+  ctx.font = `500 ${subSize}px ${font}`;
+  const letterSpacing = subSize * 0.6;
   let totalW = 0;
   for (const c of subText) totalW += ctx.measureText(c).width + letterSpacing;
   totalW -= letterSpacing;
@@ -171,7 +171,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     const font =
       '"Inter", "SF Pro Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif';
     const mainSize = Math.round(Math.min(W * 0.13, 150));
-    const subSize = Math.round(Math.min(W * 0.035, 28));
+    const subSize = Math.round(Math.min(W * 0.065, 55));
     const centerY = H * 0.47;
     const subText = "Supplements";
 
@@ -205,8 +205,8 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         ctx.font = `800 ${mainSize}px ${font}`;
         ctx.fillText("SOFTBRIDGE", W / 2, centerY);
 
-        const letterSpacing = subSize * 0.4;
-        ctx.font = `300 ${subSize}px ${font}`;
+        const letterSpacing = subSize * 0.6;
+        ctx.font = `500 ${subSize}px ${font}`;
         let totalW = 0;
         for (const c of subText) totalW += ctx.measureText(c).width + letterSpacing;
         totalW -= letterSpacing;

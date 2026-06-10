@@ -51,6 +51,20 @@ function HomeContent() {
     ? PRODUCTS_DATA
     : PRODUCTS_DATA.filter(p => p.category === activeCategory);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.title = "Hey, geri dön! 💪";
+      } else {
+        document.title = "Softbridge Supplements | Premium Athletic Supplements";
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
   useLayoutEffect(() => {
     if (skipPreloader) {
       setLoading(false);

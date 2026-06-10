@@ -24,9 +24,9 @@ const lilitaOne = Lilita_One({
 });
 
 export const metadata: Metadata = {
-  title: "WEIDER Supplements | Unleash the Beast Within",
-  description: "Comic book inspired premium athletic supplements by Weider. High energy, clinical dosages, aggressive performance gains. Protein, Creatine, Pre-Workout, and recovery formulas.",
-  keywords: "Weider, Weider Supplements, sports supplements, pre-workout, protein powder, creatine, BCAA, comic styled supplements, workout boosters",
+  title: "Softbridge Supplements | Premium Athletic Supplements",
+  description: "Comic book inspired premium athletic supplements by Softbridge. High energy, clinical dosages, aggressive performance gains. Protein, Creatine, Pre-Workout, and recovery formulas.",
+  keywords: "Softbridge, Softbridge Supplements, sports supplements, pre-workout, protein powder, creatine, BCAA, comic styled supplements, workout boosters",
 };
 
 export default function RootLayout({
