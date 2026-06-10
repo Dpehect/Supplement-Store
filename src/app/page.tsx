@@ -15,7 +15,7 @@ import PRODUCTS, { ProductType } from "@/data/products";
 import ProductDetailModal from "@/components/ProductDetailModal";
 import HoverWaveImage from "@/components/HoverWaveImage";
 import Preloader from "@/components/Preloader";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, X, Check, Flame, AlertCircle } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -465,7 +465,7 @@ function HomeContent() {
               <div className="absolute inset-0 bg-halftone-black opacity-[0.08] pointer-events-none"></div>
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-4xl">🙄</span>
+                  <AlertCircle className="w-10 h-10 text-zinc-500" />
                   <h3 className="font-comic text-2xl md:text-3xl text-zinc-600 uppercase tracking-wide">
                     SIRADAN MARKALAR
                   </h3>
@@ -473,7 +473,7 @@ function HomeContent() {
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-3">
-                    <span className="text-xl text-comicRed font-bold mt-0.5">❌</span>
+                    <X className="w-6 h-6 text-comicRed font-bold mt-0.5" />
                     <div>
                       <h4 className="font-comic text-base uppercase text-zinc-700 tracking-wide">Tescilli Karışımlar</h4>
                       <p className="font-sans text-xs text-zinc-600 font-semibold leading-relaxed">
@@ -483,7 +483,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <span className="text-xl text-comicRed font-bold mt-0.5">❌</span>
+                    <X className="w-6 h-6 text-comicRed font-bold mt-0.5" />
                     <div>
                       <h4 className="font-comic text-base uppercase text-zinc-700 tracking-wide">Etkisiz Etken Maddeler</h4>
                       <p className="font-sans text-xs text-zinc-600 font-semibold leading-relaxed">
@@ -493,7 +493,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <span className="text-xl text-comicRed font-bold mt-0.5">❌</span>
+                    <X className="w-6 h-6 text-comicRed font-bold mt-0.5" />
                     <div>
                       <h4 className="font-comic text-base uppercase text-zinc-700 tracking-wide">Gereksiz Kafein ve Stimülanlar</h4>
                       <p className="font-sans text-xs text-zinc-600 font-semibold leading-relaxed">
@@ -517,7 +517,7 @@ function HomeContent() {
 
               <div className="pt-4">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-4xl">🔥</span>
+                  <Flame className="w-10 h-10 text-black fill-comicOrange" />
                   <h3 className="font-comic text-2xl md:text-3xl text-black uppercase tracking-wide">
                     WEIDER STANDARTLARI
                   </h3>
@@ -525,7 +525,7 @@ function HomeContent() {
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-3">
-                    <span className="text-xl text-green-700 font-bold mt-0.5">✓</span>
+                    <Check className="w-6 h-6 text-green-700 font-bold mt-0.5" />
                     <div>
                       <h4 className="font-comic text-base uppercase text-black tracking-wide">%100 Şeffaf İçerik</h4>
                       <p className="font-sans text-xs text-black/80 font-bold leading-relaxed">
@@ -535,7 +535,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <span className="text-xl text-green-700 font-bold mt-0.5">✓</span>
+                    <Check className="w-6 h-6 text-green-700 font-bold mt-0.5" />
                     <div>
                       <h4 className="font-comic text-base uppercase text-black tracking-wide">Klinik Olarak Kanıtlanmış Dozajlar</h4>
                       <p className="font-sans text-xs text-black/80 font-bold leading-relaxed">
@@ -545,7 +545,7 @@ function HomeContent() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <span className="text-xl text-green-700 font-bold mt-0.5">✓</span>
+                    <Check className="w-6 h-6 text-green-700 font-bold mt-0.5" />
                     <div>
                       <h4 className="font-comic text-base uppercase text-black tracking-wide">Maksimum Biyoyararlanım</h4>
                       <p className="font-sans text-xs text-black/80 font-bold leading-relaxed">

@@ -1,12 +1,14 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { X, Trash2, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
 export default function CartSidebar() {
-  const { isCartOpen, setIsCartOpen, items, updateQuantity, removeFromCart, clearCart } = useCart();
+  const router = useRouter();
+  const { isCartOpen, setIsCartOpen, items, updateQuantity, removeFromCart } = useCart();
 
   if (!isCartOpen) return null;
 
@@ -21,9 +23,8 @@ export default function CartSidebar() {
 
   const handleCheckout = () => {
     if (items.length === 0) return;
-    alert("Siparişiniz başarıyla alındı! (Demo)");
-    clearCart();
     setIsCartOpen(false);
+    router.push("/checkout");
   };
 
   return (

@@ -2,79 +2,124 @@
 
 import React, { useState } from "react";
 import SplitText from "./SplitText";
+import { Battery, Zap, Rocket, Trophy, Brain, Activity, Dumbbell, Flame, TrendingUp, Dna, Droplets, FlaskConical, Moon, Leaf, RefreshCw, Target, ChevronRight, CheckCircle } from "lucide-react";
 
 const PANELS = [
   {
     id: "crash",
     label: "PANEL 1",
     title: "ÇÖKÜŞ",
-    emoji: "😴",
     color: "#1a1c23",
     accent: "#6B7280",
-    badge: "ESNEME...",
-    badgeColor: "#374151",
-    badgeText: "white" as const,
     question: "Daha antrenmana başlamadan neden bu kadar yorgun hissediyorum?",
+    emoji: <Battery className="w-10 h-10 text-white" />,
+    badge: "BAŞLANGIÇ",
+    badgeColor: "#000",
+    badgeText: "white" as const,
     steps: [
-      { icon: "⚡", heading: "Kasların Yakıtı Bitti", body: "Kasların glikojenle çalışır. 6 saatten fazla aç kaldıysan depoların %40'a kadar boşalabilir. Bu da ısınma bitmeden kollarının ve bacaklarının taş gibi ağırlaşmasına sebep olur." },
-      { icon: "😴", heading: "Stres Hormonu Devrede", body: "Antrenman öncesi yetersiz beslenmek kortizol hormonunu tetikler. Bu hormon kaslarını yerken motivasyonunu da sıfıra indirir. Klasik bir enerji çöküşünün en garanti tarifidir." },
-      { icon: "💧", heading: "Vücudun Susuz Kaldı", body: "%1-2'lik hafif bir susuzluk bile güç çıkışını %8-10 düşürür. Çoğu sporcu vücudunun susuz kaldığını fark etmeden antrenmana başlar." },
-      { icon: "🔋", heading: "WEIDER Çözümü", body: "Antrenmandan 30 dakika önce Weider Enerji Barı + EAA Kompleksi. Bara ilk dokunuşundan önce vücudunu hızlı karbonhidrat ve elektrolitlerle tamamen şarj eder." },
-    ],
+      {
+        icon: <Brain className="w-6 h-6 text-comicOrange" />,
+        heading: "BEYİN SİSİ",
+        body: "Odaklanma sorunu, gün içi sürekli yorgunluk hissi."
+      },
+      {
+        icon: <Activity className="w-6 h-6 text-comicOrange" />,
+        heading: "YAVAŞ METABOLİZMA",
+        body: "Kilo vermekte zorlanma, düşük enerji seviyeleri."
+      },
+      {
+        icon: <Dumbbell className="w-6 h-6 text-comicOrange" />,
+        heading: "GÜÇ KAYBI",
+        body: "Antrenmanlarda tükenmişlik ve performans düşüklüğü."
+      }
+    ]
   },
   {
-    id: "sparks",
-    label: "PANEL 2",
+    id: "panel-2",
     title: "KIVILCIM",
-    emoji: "⚡",
-    color: "#7f1d1d",
-    accent: "#FF5F1F",
-    badge: "GÜM!",
-    badgeColor: "#FF5F1F",
-    badgeText: "black" as const,
-    question: "WEIDER kana karıştığı an ne olur?",
-    steps: [
-      { icon: "🧠", heading: "Odaklanma Başladı", body: "Kafein ve L-Teanin birlikteliği yaklaşık 15 dakikada etkisini gösterir. Kaygı yaratmadan keskin bir odaklanma sağlar. Zihnin antrenmana bir projektör gibi değil, adeta bir lazer gibi kilitlenir." },
-      { icon: "🫀", heading: "Kan Hücumu (Pump)", body: "Klinik dozda (6g) Sitrülin Malat, nitrik oksit üretimini tetikler. Damarların genişler, set aralarında kasların oksijen ve besinle dolar." },
-      { icon: "💪", heading: "Son Tekrar Gücü", body: "Beta-Alanin laktik asit birikimini öteler. Böylece sinir sistemin yorulmadan önce %15-20 daha uzun süre en yüksek frekansta çalışabilir." },
-      { icon: "🔥", heading: "RAGE Karışımı", body: "300mg Kafein · 6g Sitrülin · 3.2g Beta-Alanin · 2.5g Betaine. Her içerik klinik olarak etkili dozlardadır. Arkasına saklanılacak hiçbir gizli formül yok." },
-    ],
-  },
-  {
-    id: "hyperdrive",
-    label: "PANEL 3",
-    title: "HİPER HIZ",
-    emoji: "🚀",
-    color: "#78350f",
+    label: "ETKİ ŞEKLİ",
+    color: "#D32F2F",
     accent: "#FFD700",
-    badge: "BUMM!",
+    question: "İlk dozu aldığında vücudunda ne tetiklenir?",
+    emoji: <Zap className="w-10 h-10 text-white" />,
+    badge: "30 DAKİKA",
     badgeColor: "#FFD700",
     badgeText: "black" as const,
-    question: "Gerçek zirve performansı hissetmek nasıl bir şey?",
     steps: [
-      { icon: "📈", heading: "Limitleri Yukarı Çek", body: "Kreatin Monohidrat (günlük 5g protokolü) kaslardaki fosfokreatin depolarını doldurur. Set aralarında ATP 3 kat daha hızlı yenilenir. 4-6 hafta içinde gücündeki artışı doğrudan hissedersin." },
-      { icon: "🧬", heading: "Kas İnşası Başlasın", body: "Tek porsiyondaki Lösin oranı kas inşasının ana şalteri olan mTOR yolunu aktif hale getirir. Weider Whey Gold her ölçekte tam 2.8g lösin içerir." },
-      { icon: "🩸", heading: "Kasların Şişmesi", body: "%85-90 eforda kasların kanla dolarak %15-20 oranında hacim kazanır. Bu sadece ayna karşısında iyi görünmek için değil, kas inşasını başlatan anabolik sinyallerin kendisidir." },
-      { icon: "⚗️", heading: "Temiz ve Güvenli", body: "WEIDER ürünleri Informed-Sport testlerinden geçer. Yasaklı madde riski yoktur. 12 farklı branşta 47'den fazla profesyonel olimpiyat sporcusu tarafından güvenle kullanılır." },
-    ],
+      {
+        icon: <Flame className="w-6 h-6 text-comicYellow" />,
+        heading: "HIZLI EMİLİM",
+        body: "Etken maddeler 15 dakikada kana karışmaya başlar."
+      },
+      {
+        icon: <TrendingUp className="w-6 h-6 text-comicYellow" />,
+        heading: "ATP ARTIŞI",
+        body: "Hücresel enerji üretimi maksimize edilir."
+      },
+      {
+        icon: <Dna className="w-6 h-6 text-comicYellow" />,
+        heading: "SİNİR SİSTEMİ UYARISI",
+        body: "Merkezi sinir sistemi aktive olur, reaksiyon süresi kısalır."
+      }
+    ]
   },
   {
-    id: "glory",
-    label: "PANEL 4",
-    title: "ZAFER",
-    emoji: "🏆",
-    color: "#111827",
+    id: "panel-3",
+    title: "DÖNÜŞÜM",
+    label: "HÜCRESEL BİYOLOJİ",
+    color: "#FF5F1F",
+    accent: "#1F2833",
+    question: "Düzenli kullanımda kas anatomisi nasıl değişir?",
+    emoji: <Rocket className="w-10 h-10 text-white" />,
+    badge: "14 GÜN",
+    badgeColor: "#1F2833",
+    badgeText: "white" as const,
+    steps: [
+      {
+        icon: <Droplets className="w-6 h-6 text-comicGray" />,
+        heading: "HİPERTROFİ",
+        body: "Kas liflerinde mikro yırtıklar hızla onarılır ve kalınlaşır."
+      },
+      {
+        icon: <FlaskConical className="w-6 h-6 text-comicGray" />,
+        heading: "NOX ÜRETİMİ",
+        body: "Nitrik oksit seviyesi artar, damarlanma ve 'pump' hissi kalıcı hale gelir."
+      },
+      {
+        icon: <Moon className="w-6 h-6 text-comicGray" />,
+        heading: "DERİN TOPARLANMA",
+        body: "REM uykusu kalitesi artar, kas inşası gece boyunca devam eder."
+      }
+    ]
+  },
+  {
+    id: "panel-4",
+    title: "ZİRVE",
+    label: "MAXIMUM KAPASİTE",
+    color: "#FFD700",
     accent: "#D32F2F",
-    badge: "REKOR!",
+    question: "Genetik potansiyelinin zirvesine ulaştığında ne olur?",
+    emoji: <Trophy className="w-10 h-10 text-black" />,
+    badge: "90 GÜN",
     badgeColor: "#D32F2F",
     badgeText: "white" as const,
-    question: "Kazanımları uzun vadede nasıl korurum?",
     steps: [
-      { icon: "🌙", heading: "Uykuda Büyüme", body: "Kas inşasının en yoğun olduğu 6 saat uykuda gerçekleşir. Yavaş sindirilen Kazein Proteini kaslarını gece boyunca besler. Kas yıkımını sıfıra indirir, güne daha dolu başlarsın." },
-      { icon: "🫒", heading: "Ağrılara Veda", body: "Omega-3 yağ asitleri (günlük 2g EPA+DHA) antrenman sonrası kas ağrılarını %35'e kadar azaltır. WEIDER Omega-3 yüksek saflıkta ve balık kokusu olmadan sunulur." },
-      { icon: "🔄", heading: "Zamanın Gücü", body: "4. Hafta: Bench press'te fazladan 5 kg. 8. Hafta: Belirginleşen damarlar. 12. Hafta: Yepyeni bir sen. İstikrar ve WEIDER protokolü birleştiğinde sonuçlar seni bile şaşırtacak." },
-      { icon: "🎯", heading: "Şampiyonlar Rutini", body: "Rutinimiz: Antrenman öncesi RAGE → Antrenman sırası/sonrası Whey Gold → Uykudan önce Kazein → Günlük Omega-3 + Multivitamin. İşte buna WEIDER Performans Protokolü™ diyoruz." },
-    ],
+      {
+        icon: <Leaf className="w-6 h-6 text-comicRed" />,
+        heading: "KUSURSUZ YAĞ YAKIMI",
+        body: "Bazal metabolizma hızı zirvededir, yağ oranı minimuma iner."
+      },
+      {
+        icon: <RefreshCw className="w-6 h-6 text-comicRed" />,
+        heading: "BİTMEK BİLMEYEN DAYANIKLILIK",
+        body: "Laktik asit birikimi gecikir, antrenman hacmi ikiye katlanır."
+      },
+      {
+        icon: <Target className="w-6 h-6 text-comicRed" />,
+        heading: "ZİHİNSEL KESİNLİK",
+        body: "Sadece kaslar değil, beyin de %100 kapasiteyle çalışır."
+      }
+    ]
   },
 ];
 
@@ -101,6 +146,11 @@ function PanelContent({ panel, onClose, onNextPanel, hasNextPanel }: { panel: ty
         </button>
       </div>
 
+      <div className="flex items-center justify-center gap-2 text-center font-sans text-xs font-bold text-white/60 mt-3 p-2 rounded-lg bg-white/5 border border-white/10 animate-pulse">
+        <ChevronRight className="w-5 h-5 animate-bounce-right" />
+        <span>SIRADAKİ BİLGİ İÇİN TIKLA</span>
+      </div>
+
       <p className="font-sans text-xs italic text-white/60 mb-1">{panel.question}</p>
 
       {panel.steps.map((s, i) => (
@@ -114,7 +164,7 @@ function PanelContent({ panel, onClose, onNextPanel, hasNextPanel }: { panel: ty
             pointerEvents: i <= step ? "auto" : "none",
           }}
         >
-          <span className="text-2xl flex-shrink-0 mt-0.5">{s.icon}</span>
+          <div className="flex-shrink-0 mt-0.5">{s.icon}</div>
           <div>
             <h5 className="font-comic text-sm uppercase tracking-wide text-white mb-1">{s.heading}</h5>
             <p className="font-sans text-[11px] text-gray-300 leading-relaxed">{s.body}</p>
@@ -138,8 +188,8 @@ function PanelContent({ panel, onClose, onNextPanel, hasNextPanel }: { panel: ty
             SONRAKİ PANELE GEÇ ➔
           </button>
         ) : (
-          <div className="bg-green-500 text-black font-comic text-sm px-4 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0_#000] uppercase text-center w-full">
-            ✅ TÜM BİLGİLERİ TAMAMLADIN
+          <div className="bg-green-500 text-black font-comic text-sm px-4 py-2 border-2 border-black rounded-lg shadow-[2px_2px_0_#000] uppercase text-center w-full flex items-center justify-center gap-2">
+            <CheckCircle className="w-5 h-5" /> TÜM BİLGİLERİ TAMAMLADIN
           </div>
         )}
       </div>
@@ -184,7 +234,7 @@ function GamePanel({
       </span>
 
       <div className="relative z-10 p-5 pb-3 flex items-center gap-4">
-        <span className="text-4xl">{panel.emoji}</span>
+        <div className="flex-shrink-0">{panel.emoji}</div>
         <div>
           <p className="font-sans text-[10px] font-black uppercase tracking-widest" style={{ color: panel.accent }}>
             {panel.label}
