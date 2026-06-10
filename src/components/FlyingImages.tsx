@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-/* Each "flight" definition */
 interface Flight {
   id: number;
   src: string;
@@ -35,14 +34,12 @@ const ANIMS = [
 ];
 
 function seededRand(seed: number) {
-  // Simple deterministic pseudo-random so SSR/CSR match
   const x = Math.sin(seed + 1) * 10000;
   return x - Math.floor(x);
 }
 
 function buildFlights(): Flight[] {
   const flights: Flight[] = [];
-  // 12 simultaneous fliers, staggered so they don't all start together
   for (let i = 0; i < 12; i++) {
     const r1 = seededRand(i * 3);
     const r2 = seededRand(i * 3 + 1);

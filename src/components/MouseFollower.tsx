@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-/* ── tiny images that orbit around the cursor ── */
 const ORBIT_IMGS = [
   "/images/protein_powder.png",
   "/images/flying_capsule.png",
@@ -22,11 +21,8 @@ export default function MouseFollower() {
   const trailEls    = useRef<HTMLDivElement[]>([]);
   const orbitEls    = useRef<HTMLDivElement[]>([]);
 
-  // raw pointer position
   const mouse = useRef({ x: -300, y: -300 });
-  // smoothed follower
   const fPos   = useRef({ x: -300, y: -300 });
-  // per-trail smoothed
   const tPos   = useRef(
     Array.from({ length: TRAIL_COUNT }, () => ({ x: -300, y: -300 }))
   );
@@ -40,7 +36,6 @@ export default function MouseFollower() {
     const isMobile = window.innerWidth < 1024;
     if (isMobile) return; // no cursor on mobile
 
-    /* ── RAF loop: move everything via transform ── */
     const tick = () => {
       const mx = mouse.current.x;
       const my = mouse.current.y;
@@ -49,15 +44,12 @@ export default function MouseFollower() {
       fPos.current.x += (mx - fPos.current.x) * LF;
       fPos.current.y += (my - fPos.current.y) * LF;
 
-      // follower ring
       const f = followerRef.current;
       if (f) f.style.transform = `translate(${fPos.current.x}px,${fPos.current.y}px) translate(-50%,-50%)`;
 
-      // sharp dot
       const d = dotRef.current;
       if (d) d.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
 
-      // trail chain
       let tx = mx, ty = my;
       for (let i = 0; i < TRAIL_COUNT; i++) {
         const lag = 0.18 - i * 0.02;
@@ -69,7 +61,6 @@ export default function MouseFollower() {
         ty = tPos.current[i].y;
       }
 
-      // orbiting images: rotate around smoothed follower center
       const now = performance.now() / 1000;
       const ORBIT_R = 44;
       orbitEls.current.forEach((el, i) => {
@@ -84,14 +75,12 @@ export default function MouseFollower() {
     };
     rafId.current = requestAnimationFrame(tick);
 
-    /* ── pointer move ── */
     const onMove = (e: PointerEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
     };
     window.addEventListener("pointermove", onMove, { passive: true });
 
-    /* ── hover detection via pointermove target inspection ── */
     const setLabel = (text: string) => {
       if (labelRef.current) labelRef.current.textContent = text;
     };
@@ -112,7 +101,6 @@ export default function MouseFollower() {
       if (t === lastTarget) return;
       lastTarget = t;
 
-      // clear all states first
       followerRef.current?.classList.remove("is-expanded", "is-hover");
       dotRef.current?.classList.remove("is-hidden");
       trailEls.current.forEach(el => el?.classList.remove("is-dim"));
@@ -148,7 +136,6 @@ export default function MouseFollower() {
   return (
     <>
       <style>{`
-        /* hide native cursor on desktop */
         @media (min-width: 1024px) {
           *, *::before, *::after { cursor: none !important; }
         }
@@ -202,7 +189,6 @@ export default function MouseFollower() {
       `}</style>
 
       <div ref={rootRef}>
-        {/* Trail dots */}
         {Array.from({ length: TRAIL_COUNT }).map((_, i) => (
           <div
             key={`tr-${i}`}
@@ -212,19 +198,16 @@ export default function MouseFollower() {
           />
         ))}
 
-        {/* Orbiting product thumbnails */}
         {ORBIT_IMGS.map((src, i) => (
           <div key={`orb-${i}`} ref={el => { if (el) orbitEls.current[i] = el; }} className="c-orbit">
             <Image src={src} alt="" fill sizes="18px" className="object-contain p-[2px]" />
           </div>
         ))}
 
-        {/* Smooth follower ring */}
         <div ref={followerRef} className="c-follower">
           <span ref={labelRef}>SOFTBRIDGE</span>
         </div>
 
-        {/* Sharp dot */}
         <div ref={dotRef} className="c-dot" />
       </div>
     </>

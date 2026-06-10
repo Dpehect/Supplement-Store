@@ -38,7 +38,6 @@ export default function SplitText({
     const items = container.querySelectorAll(".split-item");
     if (items.length === 0) return;
 
-    // Set initial styles based on animation
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
@@ -108,7 +107,6 @@ export default function SplitText({
     );
   }
 
-  // Split into characters (handling spaces correctly)
   const chars = text.split("");
   return (
     <span ref={containerRef} className={`inline-block overflow-hidden px-3 -mx-3 py-3 -my-3 ${className}`}>

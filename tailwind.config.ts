@@ -11,13 +11,13 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        comicBlack: "#FAF6EE", // Changed from #0B0C10 to retro paper cream
+        comicBlack: "#FAF6EE",
         comicRed: "#D32F2F",
         comicRedDark: "#8B0000",
         comicOrange: "#FF5F1F",
         comicYellow: "#FFD700",
         comicGray: "#1F2833",
-        comicGrayLight: "#4A5568", // Darkened for better contrast on light background
+        comicGrayLight: "#4A5568",
       },
       fontFamily: {
         comic: ["var(--font-bangers)", "sans-serif"],

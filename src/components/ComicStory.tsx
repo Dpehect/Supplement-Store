@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import SplitText from "./SplitText";
 
-/* ── Panel data ── */
 const PANELS = [
   {
     id: "crash",
@@ -79,7 +78,6 @@ const PANELS = [
   },
 ];
 
-/* ── Single panel content — only rendered when open ── */
 function PanelContent({ panel, onClose }: { panel: typeof PANELS[0]; onClose: () => void }) {
   const [step, setStep] = useState(-1);
   const total = panel.steps.length;
@@ -93,7 +91,6 @@ function PanelContent({ panel, onClose }: { panel: typeof PANELS[0]; onClose: ()
 
   return (
     <div className="relative z-10 px-5 pb-5 flex flex-col gap-2 flex-1" onClick={handleClick}>
-      {/* Progress bar */}
       <div className="flex gap-1.5 mb-2 items-center">
         {Array.from({ length: total }).map((_, i) => (
           <div
@@ -147,7 +144,6 @@ function PanelContent({ panel, onClose }: { panel: typeof PANELS[0]; onClose: ()
   );
 }
 
-/* ── Game panel wrapper ── */
 function GamePanel({
   panel,
   isActive,
@@ -171,10 +167,8 @@ function GamePanel({
       style={{ background: panel.color }}
       onClick={!isActive ? onOpen : undefined}
     >
-      {/* Halftone overlay */}
       <div className="absolute inset-0 bg-halftone-black opacity-20 pointer-events-none" />
 
-      {/* Badge */}
       <span
         className="absolute top-3 right-3 z-10 font-comic text-xs px-3 py-1 rounded-lg border-2 border-black font-black uppercase shadow-[2px_2px_0_#000]"
         style={{ background: panel.badgeColor, color: panel.badgeText === "black" ? "#000" : "#fff" }}
@@ -182,7 +176,6 @@ function GamePanel({
         {panel.badge}
       </span>
 
-      {/* Header row — always visible */}
       <div className="relative z-10 p-5 pb-3 flex items-center gap-4">
         <span className="text-4xl">{panel.emoji}</span>
         <div>
@@ -193,7 +186,6 @@ function GamePanel({
         </div>
       </div>
 
-      {/* Collapsed hint */}
       {!isActive && (
         <div className="relative z-10 px-5 pb-4 flex items-center gap-3">
           <span className="font-sans text-xs text-white/50 italic flex-1">{panel.question}</span>
@@ -206,7 +198,6 @@ function GamePanel({
         </div>
       )}
 
-      {/* Expanded content — only mounted when active, fully unmounts on close = full reset */}
       {isActive && (
         <PanelContent key={panel.id} panel={panel} onClose={onClose} />
       )}
@@ -214,9 +205,7 @@ function GamePanel({
   );
 }
 
-/* ── Root component ── */
 export default function ComicStory() {
-  // null = all closed; string = that panel's id is open
   const [activePanel, setActivePanel] = useState<string | null>(PANELS[0].id);
 
   const open  = (id: string) => setActivePanel(id);
@@ -230,7 +219,6 @@ export default function ComicStory() {
       <div className="absolute inset-0 bg-halftone-red opacity-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
-        {/* Title */}
         <div className="text-center mb-12">
           <SplitText
             text="DÖNÜŞÜM SERÜVENİN"
@@ -246,7 +234,6 @@ export default function ComicStory() {
           </p>
         </div>
 
-        {/* 2×2 grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           {PANELS.map(panel => (
             <GamePanel
@@ -259,7 +246,6 @@ export default function ComicStory() {
           ))}
         </div>
 
-        {/* Tracker */}
         <div className="mt-8 flex justify-center">
           <div className="bg-black border-2 border-comicOrange rounded-2xl px-6 py-3 flex gap-4 items-center shadow-[4px_4px_0_#FF5F1F]">
             <span className="font-comic text-comicOrange text-sm uppercase tracking-wide">

@@ -17,7 +17,6 @@ body {
   background-color: #FAF6EE !important;
 }
 
-/* Halftone Dot Patterns */
 .bg-halftone-orange {
   background-image: radial-gradient(rgba(255, 95, 31, 0.25) 15%, transparent 16%);
   background-size: 12px 12px;
@@ -33,7 +32,6 @@ body {
   background-size: 12px 12px;
 }
 
-/* Comic Text Outline */
 .text-stroke-black {
   -webkit-text-stroke: 2px #000000;
   text-shadow: 2px 2px 0px #000000;
@@ -49,7 +47,6 @@ body {
   text-shadow: 2px 2px 0px #000000;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -70,7 +67,6 @@ body {
   background: #D32F2F;
 }
 
-/* ── Floating keyframes ─────────────────────────────── */
 @keyframes float-slow {
   0%, 100% { transform: translateY(0px)   rotate(0deg); }
   33%       { transform: translateY(-14px) rotate(2deg); }
@@ -95,7 +91,6 @@ body {
 .float-fast   { animation: float-fast   3s ease-in-out infinite; }
 .float-x      { animation: float-x      6s ease-in-out infinite; }
 
-/* Subtle site-wide rectangle motion */
 @keyframes rect-drift-a {
   0%, 100% { translate: 0 0; rotate: 0deg; }
   45%      { translate: 0 -3px; rotate: 0.35deg; }
@@ -160,7 +155,6 @@ body {
   rotate: 0deg;
 }
 
-/* WebGL liquid displacement image hover */
 .hover-wave-image {
   cursor: grab;
   isolation: isolate;
@@ -197,7 +191,6 @@ body {
   }
 }
 
-/* ── Scroll-reveal ─────────────────────────────────── */
 .scroll-reveal {
   opacity: 0;
   transform: translateY(36px) scale(0.96);
@@ -209,7 +202,6 @@ body {
   transform: translateY(0) scale(1);
 }
 
-/* ── Rounded comic image frames ─────────────────────── */
 .comic-img-frame {
   border-radius: 16px;
   overflow: hidden;
@@ -217,7 +209,6 @@ body {
   box-shadow: 6px 6px 0 #000;
 }
 
-/* ── Interactive game panel ─────────────────────────── */
 @keyframes panel-pop {
   0%   { transform: scale(0.92) rotate(-3deg); opacity: 0; }
   60%  { transform: scale(1.04) rotate(1deg);  opacity: 1; }
@@ -233,13 +224,11 @@ body {
 }
 .info-slide { animation: info-slide 0.3s ease forwards; }
 
-/* ── Global radius helpers ─────────────────────────── */
 .r-sm  { border-radius: 8px;  }
 .r-md  { border-radius: 14px; }
 .r-lg  { border-radius: 20px; }
 .r-xl  { border-radius: 28px; }
 
-/* ── Flying-across animations (left→right, right→left, diagonal) ── */
 @keyframes fly-lr {
   0%   { transform: translateX(-160px) translateY(0)    rotate(-15deg) scale(0.7); opacity: 0; }
   5%   { opacity: 0.85; }
@@ -277,7 +266,6 @@ body {
   100% { transform: translateX(calc(100vw + 160px)) rotate(720deg) scale(1);   opacity: 0; }
 }
 
-/* ── Ticker Marquee scroll animations ──────────────── */
 @keyframes marquee-left {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }

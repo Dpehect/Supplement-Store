@@ -13,7 +13,6 @@ export default function Magnetic({ children, range = 40, strength = 0.35 }: Magn
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Disable on smaller devices
     if (window.innerWidth < 1024) return;
 
     const container = containerRef.current;
@@ -30,11 +29,9 @@ export default function Magnetic({ children, range = 40, strength = 0.35 }: Magn
       const distanceX = e.clientX - centerX;
       const distanceY = e.clientY - centerY;
       
-      // Calculate distance from center
       const distance = Math.hypot(distanceX, distanceY);
 
       if (distance < range) {
-        // Pull target toward cursor
         gsap.to(target, {
           x: distanceX * strength,
           y: distanceY * strength,
@@ -42,7 +39,6 @@ export default function Magnetic({ children, range = 40, strength = 0.35 }: Magn
           ease: "power2.out"
         });
       } else {
-        // Rebound if cursor moves out of range
         gsap.to(target, {
           x: 0,
           y: 0,
@@ -53,7 +49,6 @@ export default function Magnetic({ children, range = 40, strength = 0.35 }: Magn
     };
 
     const handleMouseLeave = () => {
-      // Rebound when leaving the element completely
       gsap.to(target, {
         x: 0,
         y: 0,
@@ -71,7 +66,6 @@ export default function Magnetic({ children, range = 40, strength = 0.35 }: Magn
     };
   }, [range, strength]);
 
-  // Return children cloned or wrapped in our ref container
   return (
     <div ref={containerRef} className="inline-block">
       {children}

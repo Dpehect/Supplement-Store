@@ -13,7 +13,6 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-[100] w-full border-b-4 border-black bg-comicBlack py-4 px-6 md:px-12 flex items-center justify-between select-none">
-      {/* Brand Logo - Comic Explosion Panel */}
       <div 
         className="flex items-center gap-2 cursor-pointer group"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -31,7 +30,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Navigation Links — plain buttons, no Magnetic, prevents cursor freeze */}
       <nav className="hidden md:flex items-center gap-8 font-sans font-bold text-sm tracking-wider uppercase">
         <button
           onClick={() => scrollToSection("products")}
@@ -58,7 +56,6 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* CTA Button */}
       <div className="flex items-center gap-4">
         <button
           onClick={() => scrollToSection("products")}

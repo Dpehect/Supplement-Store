@@ -17,7 +17,6 @@ export default function Marquee({
   direction = "left",
   rotate = "-rotate-1",
 }: MarqueeProps) {
-  // Repeat the text string so it overflows the viewport and scrolls seamlessly
   const repeatedText = Array(12).fill(text).join("  ·  ");
 
   return (

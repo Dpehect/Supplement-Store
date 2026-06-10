@@ -84,9 +84,7 @@ function HomeContent() {
   useEffect(() => {
     if (loading) return;
 
-    // Hero Entrance Animations
     const ctx = gsap.context(() => {
-      // Background rotation
       gsap.to(".bg-speedlines", {
         rotate: 360,
         duration: 80,
@@ -94,7 +92,6 @@ function HomeContent() {
         ease: "none",
       });
 
-      // Split text reveal on hero title
       gsap.from(".hero-headline-1", {
         yPercent: 100,
         skewY: 7,
@@ -110,7 +107,6 @@ function HomeContent() {
         ease: "power4.out",
       });
 
-      // Floating items animation
       gsap.to(mainBottleRef.current, {
         y: -15,
         rotate: 3,
@@ -148,7 +144,6 @@ function HomeContent() {
         ease: "sine.inOut",
       });
 
-      // Scroll Trigger parallax effects
       gsap.to(mainBottleRef.current, {
         y: 100,
         rotate: 15,
@@ -182,7 +177,6 @@ function HomeContent() {
         }
       });
 
-      // Slide-in animations for Why Weider Outperforms comparison panels (Trigger Once)
       if (rivalsRef.current && weiderOutperformsRef.current) {
         gsap.from(rivalsRef.current, {
           x: -120,
@@ -243,12 +237,10 @@ function HomeContent() {
       >
       <Header />
 
-      {/* HERO SECTION */}
       <section
         ref={heroContainerRef}
         className="relative min-h-[calc(100vh-80px)] w-full border-b-4 border-black flex flex-col lg:flex-row items-center justify-between py-12 px-6 md:px-12 bg-comicBlack overflow-hidden"
       >
-        {/* Speed lines background overlay */}
         <div className="absolute inset-0 bg-halftone-orange opacity-[0.08] pointer-events-none z-0"></div>
         <div className="bg-speedlines absolute w-[180%] h-[180%] top-[-40%] left-[-40%] opacity-[0.25] z-0 pointer-events-none">
           <Image
@@ -259,9 +251,7 @@ function HomeContent() {
           />
         </div>
 
-        {/* Hero Left Content */}
         <div className="relative z-10 max-w-xl lg:max-w-2xl text-left flex flex-col justify-center order-2 lg:order-1 mt-8 lg:mt-0">
-          {/* Badge indicator */}
           <div className="inline-block bg-comicRed border-2 border-black px-4 py-1.5 -skew-x-12 transform rotate-1 mb-6 shadow-comic max-w-max">
             <span className="font-comic text-base md:text-lg text-white font-extrabold uppercase tracking-widest">
               DİKKAT: YÜKSEK ETKEN MADDE FORMÜLÜ!
@@ -295,7 +285,6 @@ function HomeContent() {
             </button>
           </div>
 
-          {/* Highlights splat indicators */}
           <div className="grid grid-cols-3 gap-4 border-t-3 border-black pt-8 mt-12 max-w-md">
             <div>
               <span className="font-comic text-2xl text-comicYellow text-stroke-black block">%100</span>
@@ -312,14 +301,11 @@ function HomeContent() {
           </div>
         </div>
 
-        {/* Hero Right Visuals */}
         <div className="relative z-10 w-full lg:w-[45%] h-[400px] lg:h-[600px] flex items-center justify-center order-1 lg:order-2">
-          {/* Halftone Comic Blast Background Circle */}
           <div className="absolute w-72 h-72 md:w-[450px] md:h-[450px] bg-comicRed rounded-full border-4 border-black shadow-comic z-0 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 bg-halftone-black opacity-30"></div>
           </div>
 
-          {/* Exploding / floating supplement bottle */}
           <div ref={mainBottleRef} className="relative w-64 h-64 md:w-96 md:h-96 z-10 drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] float-medium">
             <HoverWaveImage
               src="/products/weider-premium-whey-isolate.png"
@@ -331,7 +317,6 @@ function HomeContent() {
             />
           </div>
 
-          {/* Flying supplement capsule decor - 1 */}
           <div
             ref={capsule1Ref}
             className="absolute top-10 left-12 w-20 h-20 z-20 drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)] float-x"
@@ -344,7 +329,6 @@ function HomeContent() {
             />
           </div>
 
-          {/* Flying supplement capsule decor - 2 */}
           <div
             ref={capsule2Ref}
             className="absolute bottom-16 right-10 w-24 h-24 z-20 drop-shadow-[0_8px_16px_rgba(0,0,0,0.7)] float-slow"
@@ -357,7 +341,6 @@ function HomeContent() {
             />
           </div>
 
-          {/* Sound blast text overlay */}
           <div
             ref={splatBadgeRef}
             className="absolute -bottom-4 left-6 md:left-12 z-20 bg-comicYellow text-black border-3 border-black rounded-xl font-comic text-2xl md:text-4xl px-6 py-2 rotate-[-8deg] shadow-comic uppercase font-black"
@@ -367,7 +350,6 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* DIAGONAL SCROLLING TICKER 1 */}
       <Marquee
         text="WEIDER PERFORMANS SİSTEMİ · %100 ŞEFFAF İÇERİK · LİMİTLERİNİ ZORLA · MAKSİMUM GÜÇ VE PERFORMANS"
         bgColor="bg-comicOrange"
@@ -376,10 +358,8 @@ function HomeContent() {
         rotate="-rotate-1"
       />
 
-      {/* FILTERABLE PRODUCTS GRID */}
       <section id="products" className="py-24 px-6 md:px-12 bg-comicBlack border-b-4 border-black relative">
         <div className="max-w-6xl mx-auto">
-          {/* Header text with custom text splitter */}
           <div className="flex flex-col items-center text-center mb-16">
             <div className="motion-rect-b relative inline-block transform -rotate-2 -skew-x-1 mb-4 px-6 py-2">
               <SplitText
@@ -388,7 +368,6 @@ function HomeContent() {
                 animation="bounce"
                 stagger={0.05}
               />
-              {/* Retro background shape/splat */}
               <div className="motion-still absolute inset-0 bg-comicYellow border-4 border-black -z-10 rounded-xl shadow-comic"></div>
             </div>
             <p className="font-sans text-comicOrange font-bold text-lg md:text-xl uppercase tracking-widest mt-4">
@@ -396,7 +375,6 @@ function HomeContent() {
             </p>
           </div>
 
-          {/* Filter Bar styled as rounded tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-16">
             {["ALL", "BULK", "ENERGY", "RECOVERY", "DAILY"].map((cat) => (
               <button
@@ -414,7 +392,6 @@ function HomeContent() {
             ))}
           </div>
 
-          {/* Grid of dynamic products */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProducts.map((product, i) => (
               <ScrollReveal key={product.id} delay={i * 100}>
@@ -425,7 +402,6 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* DIAGONAL SCROLLING TICKER 2 */}
       <Marquee
         text="PUMP ETKİSİ · PATLAYICI ENERJİ · HIZLI KAS ONARIMI · ELEKTROLİT DENGESİ · BİLİMSEL OLARAK KANITLANMIŞ FORMÜL"
         bgColor="bg-comicYellow"
@@ -434,15 +410,12 @@ function HomeContent() {
         rotate="rotate-1"
       />
 
-      {/* COMIC STORY SEQUENCE */}
       <ComicStory />
 
-      {/* DETAILED FORMULATION COMPARISON (REDESIGNED VINTAGE COMPARE STRIP) */}
       <section id="why-us" className="py-24 px-6 md:px-12 bg-comicBlack border-b-4 border-black relative overflow-hidden">
         <div className="absolute inset-0 bg-halftone-orange opacity-[0.05] pointer-events-none"></div>
         
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-16 relative">
             <div className="inline-block bg-comicRed border-3 border-black text-white px-6 py-1.5 -skew-x-12 transform -rotate-1 shadow-comic mb-4">
               <span className="font-comic text-2xl font-black uppercase tracking-wider">
@@ -457,10 +430,8 @@ function HomeContent() {
             </p>
           </div>
 
-          {/* Comparison Panels Container */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch relative">
             
-            {/* Center "BAM!" Badge */}
             <div 
               ref={powBadgeRef}
               className="motion-rect-c absolute top-1/2 left-1/2 z-30 bg-comicRed text-comicYellow border-4 border-black rounded-3xl font-lilita text-5xl md:text-7xl px-8 py-3 shadow-[6px_6px_0_#000] uppercase font-black tracking-wider text-stroke-black pointer-events-none select-none hidden lg:block"
@@ -469,7 +440,6 @@ function HomeContent() {
               BAM!
             </div>
 
-            {/* Left Panel: Rivals */}
             <div 
               ref={rivalsRef}
               className="bg-zinc-200 border-4 border-black rounded-2xl p-8 md:p-10 shadow-comic flex flex-col justify-between relative transform -rotate-1"
@@ -521,14 +491,12 @@ function HomeContent() {
               </div>
             </div>
 
-            {/* Right Panel: Weider */}
             <div 
               ref={weiderOutperformsRef}
               className="bg-comicYellow border-4 border-black rounded-2xl p-8 md:p-10 shadow-comic-lg flex flex-col justify-between relative transform rotate-1"
             >
               <div className="absolute inset-0 bg-halftone-orange opacity-[0.15] pointer-events-none"></div>
               
-              {/* Splat Indicator */}
               <div className="absolute -top-4 -right-4 bg-comicRed text-white border-2 border-black rounded-xl font-comic text-xs px-3 py-1 rotate-12 shadow-comic font-black uppercase">
                 ZİRVE GÜÇ!
               </div>
@@ -583,7 +551,6 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* DYNAMIC CUSTOMER REVIEWS */}
       <section className="py-24 px-6 md:px-12 bg-comicBlack border-b-4 border-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -594,7 +561,6 @@ function HomeContent() {
                 animation="bounce"
                 stagger={0.05}
               />
-              {/* Retro background shape/splat */}
               <div className="motion-still absolute inset-0 bg-comicRed border-4 border-black -z-10 rounded-xl shadow-comic"></div>
             </div>
             <p className="font-sans text-comicOrange font-bold text-lg md:text-xl uppercase tracking-widest mt-4">
@@ -603,7 +569,6 @@ function HomeContent() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Review Card 1 - White, high contrast */}
             <ScrollReveal delay={0}>
               <div className="bg-white text-black border-4 border-black rounded-2xl p-6 shadow-comic flex flex-col justify-between transform -rotate-1 hover:rotate-0 transition-transform duration-200" data-cursor="EFSANE!">
                 <div>
@@ -623,7 +588,6 @@ function HomeContent() {
               </div>
             </ScrollReveal>
 
-            {/* Review Card 2 - Yellow, high contrast */}
             <ScrollReveal delay={120}>
               <div className="bg-comicYellow text-black border-4 border-black rounded-2xl p-6 shadow-comic flex flex-col justify-between transform rotate-2 hover:rotate-0 transition-transform duration-200" data-cursor="SEÇKİN!">
                 <div>
@@ -643,7 +607,6 @@ function HomeContent() {
               </div>
             </ScrollReveal>
 
-            {/* Review Card 3 - Orange, high contrast */}
             <ScrollReveal delay={240}>
               <div className="bg-comicOrange text-black border-4 border-black rounded-2xl p-6 shadow-comic flex flex-col justify-between transform -rotate-2 hover:rotate-0 transition-transform duration-200" data-cursor="ŞAMPİYON!">
                 <div>
@@ -666,12 +629,10 @@ function HomeContent() {
         </div>
       </section>
 
-      {/* AGGRESSIVE FOOTER (NEWSLETTER CHAT & LEGAL) */}
       <footer className="bg-black py-16 px-6 md:px-12 border-t-4 border-black relative overflow-hidden">
         <div className="absolute inset-0 bg-halftone-red opacity-10 pointer-events-none"></div>
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-12 relative z-10">
           
-          {/* Brand/Newsletter Panel */}
           <div className="max-w-md flex flex-col items-center lg:items-start text-center lg:text-left">
             <div className="bg-comicOrange border-2 border-black rounded-xl px-6 py-2 -skew-x-6 transform rotate-1 mb-6 shadow-comic">
               <span className="font-comic text-2xl md:text-3xl text-black font-black uppercase">
@@ -682,7 +643,6 @@ function HomeContent() {
               Gizli ürün lansmanları, sınırlı sayıda özel seriler ve profesyonel antrenman rehberlerinden ilk sen haberdar ol.
             </p>
 
-            {/* Newsletter Input */}
             <div className="w-full flex border-3 border-black rounded-xl overflow-hidden shadow-comic">
               <input
                 type="email"
@@ -699,7 +659,6 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Quick links & corporate columns */}
           <div className="flex flex-wrap justify-center gap-12 text-center lg:text-left font-sans text-xs uppercase tracking-widest font-black text-gray-400">
             <div className="flex flex-col gap-3">
               <span className="text-comicOrange text-sm font-comic tracking-wider mb-1">ÜRÜNLER</span>
@@ -727,7 +686,6 @@ function HomeContent() {
           </div>
         </div>
 
-        {/* FDA disclaimer and copyright block */}
         <div className="max-w-6xl mx-auto border-t border-comicGray mt-16 pt-8 text-center text-[10px] text-gray-500 font-medium leading-relaxed">
           <p className="mb-4">
             * BU BEYANLAR GIDA VE İLAÇ DAİRESİ (FDA) TARAFINDAN DEĞERLENDİRİLMEMİŞTİR. BU ÜRÜNLER HERHANGİ BİR HASTALIĞI TEŞHİS ETMEK, TEDAVİ ETMEK VEYA ÖNLEMEK AMACI TAŞIMAZ.

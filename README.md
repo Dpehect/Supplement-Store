@@ -1,170 +1,100 @@
-# 🧪 Supplement Store — Comic-Themed Sports Nutrition UI
+# Supplement Store
 
-A visually explosive, comic-book-inspired supplement e-commerce landing page built with **Next.js 15**, **GSAP**, **Tailwind CSS**, and **WebGL shaders**. Every section is designed to feel like flipping through a retro comic magazine — bold borders, halftone dots, floating elements, and interactive micro-animations.
+A comic-book-themed supplement e-commerce landing page. The whole thing is designed to feel like flipping through a retro comic magazine — bold borders, halftone dot patterns, floating product bottles, and a lot of interactive animations layered on top.
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
-![React](https://img.shields.io/badge/React-19_RC-61DAFB?logo=react)
-![GSAP](https://img.shields.io/badge/GSAP-3.15-88CE02?logo=greensock)
-![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwindcss)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+Built with Next.js 15 (App Router), React 19 RC, TypeScript, Tailwind CSS 3.4, GSAP 3.15, and raw WebGL shaders.
 
 ---
 
-## ✨ Features
+## What it does
 
-| Feature | Description |
-|---|---|
-| **Preloader Animation** | SVG scoop pours protein powder into a shaker with 190 GSAP-animated particles + progress bar |
-| **WebGL Hover Distortion** | Custom GLSL vertex/fragment shaders create a liquid ripple effect on product images |
-| **Custom Cursor System** | Orbit ring with 5 product thumbnails, 6-node trail chain, and context-aware label (desktop only) |
-| **Interactive Comic Story** | 4-panel accordion game — tap to reveal cards one by one with step-by-step progress tracking |
-| **Split Text Animations** | Per-character/word GSAP ScrollTrigger animations (bounce, slide-up, pop, fade) |
-| **Parallax Hero** | Multi-layer scroll parallax on bottle + capsules via GSAP ScrollTrigger `scrub` |
-| **Infinite Marquee Tickers** | CSS-only auto-scrolling text banners with diagonal rotation and halftone overlays |
-| **Filterable Product Grid** | Category filter (Bulk / Energy / Recovery / Daily) with scroll-reveal staggered entrance |
-| **Product Detail Modal** | Full-screen overlay with stat bars, highlights, and animated badge |
-| **Comparison Section** | Side-by-side "Rivals vs Weider" panels with slide-in + elastic badge animation |
+The site is a single-page storefront for Weider supplements. It opens with an animated preloader where a protein scoop pours powder into a shaker bottle, complete with particle effects. After that, you land on a full hero section with parallax-scrolling product bottles and floating capsules.
+
+Below that there's a filterable product grid (Bulk, Energy, Recovery, Daily categories), an interactive 4-panel comic story section where you tap to reveal content step by step, a side-by-side comparison strip (generic brands vs Weider), customer reviews, and a newsletter footer.
+
+On desktop, the default cursor is replaced with a custom one — a ring with orbiting product thumbnails, a trailing dot chain, and context-sensitive labels that change based on what you hover over.
 
 ---
 
-## 🛠 Tech Stack
+## Tech stack
 
-- **Framework:** Next.js 15 (App Router, `"use client"` components)
-- **UI Library:** React 19 RC
-- **Language:** TypeScript 5
-- **Styling:** Tailwind CSS 3.4 + custom CSS (halftone patterns, text strokes, floating keyframes)
-- **Animations:** GSAP 3.15 + ScrollTrigger plugin
-- **WebGL:** Raw WebGL with custom GLSL shaders (vertex + fragment) for image distortion
-- **Icons:** Lucide React
-- **Fonts:** Google Fonts — Bangers, Comic Neue, Lilita One
+- **Next.js 15** with App Router and client components
+- **React 19 RC** for the UI layer
+- **TypeScript 5** across the whole project
+- **Tailwind CSS 3.4** for utility styling, extended with custom colors, fonts, and shadows
+- **GSAP 3.15** with ScrollTrigger for scroll-based and timeline animations
+- **WebGL** with hand-written GLSL vertex and fragment shaders for image hover effects
+- **Lucide React** for icons
+- **Google Fonts** — Bangers (headlines), Comic Neue (body), Lilita One (display titles)
 
 ---
 
-## 📁 Project Structure
+## Project structure
 
 ```
 src/
-├── app/
-│   ├── globals.css          # Halftone patterns, float keyframes, marquee, scroll-reveal
-│   ├── layout.tsx           # Root layout with Google Fonts + metadata
-│   └── page.tsx             # Main page — Hero, Products, Comparison, Reviews, Footer
-├── components/
-│   ├── Preloader.tsx         # SVG scoop + shaker + particle explosion preloader
-│   ├── MouseFollower.tsx     # Custom cursor with orbit images + trail chain
-│   ├── HoverWaveImage.tsx    # WebGL liquid ripple distortion on hover
-│   ├── Header.tsx            # Sticky comic-styled navigation bar
-│   ├── ProductCard.tsx       # Product card with GSAP tilt + WebGL hover image
-│   ├── ProductDetailModal.tsx# Full-screen product detail overlay
-│   ├── ComicStory.tsx        # 4-panel interactive accordion game
-│   ├── SplitText.tsx         # Per-char/word GSAP ScrollTrigger text animation
-│   ├── ScrollReveal.tsx      # IntersectionObserver scroll-reveal wrapper
-│   ├── Marquee.tsx           # Infinite CSS marquee ticker
-│   ├── Magnetic.tsx          # Magnetic hover effect wrapper
-│   └── FlyingImages.tsx      # Background flying supplement images
-└── data/
-    └── products.ts           # Product catalog with types, stats, and metadata
+  app/
+    globals.css           -- halftone patterns, float keyframes, marquee, scroll-reveal styles
+    layout.tsx            -- root layout, font loading, metadata
+    page.tsx              -- main page with all sections wired together
+  components/
+    Preloader.tsx         -- SVG scoop + shaker + particle burst loading screen
+    MouseFollower.tsx     -- custom cursor with orbit images and trail chain
+    HoverWaveImage.tsx    -- WebGL liquid ripple distortion on image hover
+    Header.tsx            -- sticky navigation bar
+    ProductCard.tsx       -- product card with tilt tracking and WebGL hover
+    ProductDetailModal.tsx -- full-screen product detail overlay
+    ComicStory.tsx        -- 4-panel interactive accordion with step-by-step reveal
+    SplitText.tsx         -- per-character GSAP ScrollTrigger text animations
+    ScrollReveal.tsx      -- IntersectionObserver fade-in wrapper
+    Marquee.tsx           -- infinite scrolling text ticker
+    Magnetic.tsx          -- magnetic hover pull effect
+    FlyingImages.tsx      -- background flying supplement images
+  data/
+    products.ts           -- product catalog with types, stats, pricing, and metadata
 ```
 
 ---
 
-## 🎨 Design System
+## Design system
 
-### Color Palette
+The color palette leans into a retro comic aesthetic. The background is a warm paper cream (`#FAF6EE`) instead of plain white. Primary action color is a punchy orange (`#FF5F1F`), accented with comic red (`#D32F2F`) and golden yellow (`#FFD700`). Dark panels use a deep gray (`#1F2833`).
 
-| Token | Hex | Usage |
-|---|---|---|
-| `comicBlack` | `#FAF6EE` | Retro paper cream background |
-| `comicRed` | `#D32F2F` | Badges, accents, danger states |
-| `comicOrange` | `#FF5F1F` | Primary action color, CTA buttons |
-| `comicYellow` | `#FFD700` | Highlights, prices, secondary accents |
-| `comicGray` | `#1F2833` | Card image backgrounds, dark panels |
+Typography uses three fonts: Bangers for all the comic-style headlines and badges, Comic Neue for body text and descriptions, Lilita One for big section titles.
 
-### Typography
-
-| Font | Variable | Role |
-|---|---|---|
-| **Bangers** | `--font-bangers` | Headlines, badges, comic text |
-| **Comic Neue** | `--font-comic-neue` | Body text, descriptions |
-| **Lilita One** | `--font-lilita` | Section titles, display text |
-
-### Visual Effects
-
-- **Halftone dots:** `radial-gradient` patterns (orange, black, red) applied as overlays
-- **Text strokes:** `-webkit-text-stroke` + `text-shadow` for comic book lettering
-- **Comic shadows:** Flat `4px 4px 0 #000` box-shadows (small, large, colored variants)
-- **Clip paths:** Polygon-based irregular comic panel shapes
+Visual effects include radial-gradient halftone dot overlays (in orange, black, and red variants), `-webkit-text-stroke` outlines for comic lettering, flat box-shadows offset at 4px or 8px for that hand-drawn panel look, and polygon clip-paths for irregular comic shapes.
 
 ---
 
-## 🎬 Animations Breakdown
+## How the animations work
 
-### 1. Preloader (`Preloader.tsx`)
-A GSAP timeline orchestrates a scoop-pouring-into-shaker sequence:
-- **Stage entrance** — container fades in + scales from 0.98
-- **Shaker slides up** from `16vh` below
-- **Scoop flies in** from top-right, rotates, tips over
-- **190 powder particles** spawn and fall with gravity (`power2.in` ease), each with random drift/size
-- **Shaker shakes** 3× on receiving powder (yoyo bounce)
-- **Progress bar** animates 0→100% via GSAP tween
+**Preloader** — A GSAP timeline runs a staged sequence: the container fades in, a shaker bottle slides up from below, a scoop flies in from the top-right corner and tips over, 190 individual powder particles spawn and fall with randomized drift and gravity easing, and the shaker shakes three times on impact. A progress bar tween runs simultaneously from 0 to 100%.
 
-### 2. WebGL Liquid Hover (`HoverWaveImage.tsx`)
-Custom GLSL shaders render a displacement effect:
-- **Vertex shader:** Passes UV coordinates to fragment shader
-- **Fragment shader:** Calculates distance from mouse, applies sinusoidal ripple (`sin(dist * 42 - time * 5.6)`) + secondary tangent ripple, displaced by velocity vector
-- **Smooth lerp** on pointer position (0.12 factor) prevents jitter
-- **Render loop** stops when hover ends (performance optimization)
-- **Fallback:** Standard `next/image` when WebGL is unavailable
+**WebGL image hover** — The HoverWaveImage component sets up a WebGL context with custom GLSL shaders. The fragment shader calculates the distance from the mouse position, applies a sinusoidal ripple displacement (`sin(dist * 42 - time * 5.6)`) combined with a secondary tangent ripple, and offsets the texture UVs by the mouse velocity. Pointer position is smoothed with a 0.12 lerp factor. The render loop only runs while the user is hovering, so it doesn't burn GPU cycles at rest. Falls back to a regular Next.js Image when WebGL isn't available.
 
-### 3. Custom Cursor (`MouseFollower.tsx`)
-A multi-element cursor system:
-- **Dot** — sharp 8px circle at exact mouse position
-- **Follower ring** — 54px smoothed circle (0.13 lerp) with label text
-- **Trail chain** — 6 circles with decreasing size (14→4px) and cascading lag
-- **Orbit images** — 5 product thumbnails rotate around follower at 44px radius
-- **Context detection** — reads `data-cursor` attributes for expanded labels
+**Custom cursor** — The MouseFollower component renders multiple layers: a sharp 8px dot at the exact mouse position, a 54px smoothed follower ring (0.13 lerp), six trailing circles with cascading lag and decreasing sizes from 14px down to 4px, and five product thumbnail images orbiting the follower at a 44px radius. It reads `data-cursor` attributes from hovered elements to show contextual labels like "CLICK!" or product names.
 
-### 4. Hero Parallax (`page.tsx`)
-GSAP ScrollTrigger with `scrub` creates depth:
-- Bottle moves down 100px + rotates 15° on scroll
-- Capsule 1 drifts up-left (−120px, −50px)
-- Capsule 2 drifts down-right (+180px, +60px)
-- Background speed-lines rotate 360° infinitely (80s duration)
+**Hero parallax** — GSAP ScrollTrigger with `scrub` creates depth as you scroll. The main bottle drifts down 100px and rotates 15 degrees, one capsule moves up and to the left, the other moves down and to the right. The speed-lines background rotates continuously at one full turn per 80 seconds.
 
-### 5. Split Text (`SplitText.tsx`)
-Characters are wrapped in individual `<span>` elements and animated via ScrollTrigger:
-- **Bounce** — `y: 50px → 0`, `scaleY: 0.5 → 1` with `back.out(2)` ease
-- **Slide-up** — `y: 110% → 0%` with `power3.out`
-- **Pop** — `scale: 0 → 1` with `back.out(2.5)`
+**Split text** — Each character gets wrapped in its own span element and animated individually via ScrollTrigger. The bounce preset moves characters from 50px below with a squashed scaleY and springs them into place with a `back.out(2)` ease. Other presets include slide-up, pop, and fade.
 
-### 6. Micro-Motions (`globals.css`)
-CSS keyframe animations applied globally:
-- `float-slow/medium/fast` — gentle Y-axis bobbing (3–5s)
-- `rect-drift-a/b/c` — subtle translate + rotate drift on all comic panels (7.5–9.5s)
-- `product-card-drift` — cards gently sway independently
-- All motion respects `prefers-reduced-motion: reduce`
+**Micro-motions** — CSS keyframe animations give the whole page a subtle breathing quality. Comic panels drift gently with tiny translate and rotate offsets on 7-9 second cycles. Product cards sway independently. Floating elements bob up and down. Everything respects `prefers-reduced-motion` and stops when the user has that preference enabled.
 
 ---
 
-## 🚀 Getting Started
+## Running locally
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-The app runs on `http://localhost:3000` by default.
+Opens on `http://localhost:3000`.
+
+To build for production: `npm run build` then `npm start`.
 
 ---
 
-## 📜 License
+## License
 
-This project is for educational and portfolio purposes.
+Educational and portfolio use.
