@@ -34,8 +34,8 @@ function sampleTextPositions(w: number, h: number) {
 
   const font =
     '"Inter", "SF Pro Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif';
-  const mainSize = Math.round(Math.min(w * 0.07, 76));
-  const subSize = Math.round(Math.min(w * 0.018, 16));
+  const mainSize = Math.round(Math.min(w * 0.09, 100));
+  const subSize = Math.round(Math.min(w * 0.024, 20));
   const centerY = h * 0.47;
 
   ctx.fillStyle = "#000";
@@ -117,7 +117,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     }
 
     const isMobile = W < 768;
-    const PARTICLE_CAP = isMobile ? 2500 : 5000;
+    const PARTICLE_CAP = isMobile ? 4000 : 8000;
     const COUNT = Math.min(targets.length, PARTICLE_CAP);
     const DUST = isMobile ? 100 : 220;
     const particles: Particle[] = [];
@@ -135,7 +135,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         ty: t.y,
         ox: t.x + Math.cos(angle) * dist,
         oy: t.y + Math.sin(angle) * dist,
-        size: (0.5 + Math.random() * 1.4) * depth,
+        size: (0.7 + Math.random() * 1.5) * depth,
         alpha: 0,
         depth,
         phase: Math.random() * 6283,
@@ -168,6 +168,13 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     const DISSOLVE = 700;
     const TOTAL = CONVERGE + HOLD + DISSOLVE;
 
+    const font =
+      '"Inter", "SF Pro Display", "Segoe UI", "Helvetica Neue", system-ui, sans-serif';
+    const mainSize = Math.round(Math.min(W * 0.09, 100));
+    const subSize = Math.round(Math.min(W * 0.024, 20));
+    const centerY = H * 0.47;
+    const subText = "Supplements";
+
     let t0 = 0;
     let raf = 0;
     let finished = false;
@@ -187,6 +194,32 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         elapsed > CONVERGE + HOLD
           ? Math.min((elapsed - CONVERGE - HOLD) / DISSOLVE, 1)
           : 0;
+
+      // Draw faint, soft guide text to guarantee perfect legibility
+      const opacityFactor = dP > 0 ? Math.max(0, 1 - dP * 1.5) : easeOutQuart(cP);
+      if (opacityFactor > 0.02) {
+        ctx.fillStyle = "#1C1C1C";
+        ctx.globalAlpha = 0.08 * opacityFactor;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.font = `800 ${mainSize}px ${font}`;
+        ctx.fillText("SOFTBRIDGE", W / 2, centerY);
+
+        const letterSpacing = subSize * 0.4;
+        ctx.font = `300 ${subSize}px ${font}`;
+        let totalW = 0;
+        for (const c of subText) totalW += ctx.measureText(c).width + letterSpacing;
+        totalW -= letterSpacing;
+
+        let cursorX = W / 2 - totalW / 2;
+        const subY = centerY + mainSize * 0.7;
+        for (const c of subText) {
+          const cw = ctx.measureText(c).width;
+          ctx.fillText(c, cursorX + cw / 2, subY);
+          cursorX += cw + letterSpacing;
+        }
+        ctx.globalAlpha = 1;
+      }
 
       ctx.fillStyle = "#1C1C1C";
 
@@ -211,7 +244,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           const spd = (1.5 + p.depth * 3) * dP;
           p.x += Math.cos(drift) * spd;
           p.y += Math.sin(drift) * spd + dP * 0.4;
-          p.alpha = Math.max(0, (1 - dP * 1.4) * p.depth * 0.9);
+          p.alpha = Math.max(0, (1 - dP * 1.4) * (p.depth * 0.3 + 0.7));
         } else if (holding) {
           p.x =
             p.tx +
@@ -221,7 +254,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             p.ty +
             Math.cos(sec * 0.5 + p.phase * 1.2) * 1 +
             Math.cos(sec * 1.1 + p.phase * 0.4) * 0.5;
-          p.alpha = p.depth * 0.88;
+          p.alpha = p.depth * 0.3 + 0.7;
         } else {
           const raw = Math.max(0, cP - p.delay) / (1 - p.delay);
           const e = easeOutQuart(Math.min(raw, 1));
@@ -235,7 +268,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
             Math.cos(sec * 1.8 + p.phase * 0.8) * turb +
             Math.cos(sec * 3.3 + p.phase * 0.4) * turb * 0.3;
           p.y += (1 - e) * 0.15;
-          p.alpha = Math.min(raw * 3, p.depth * 0.88);
+          p.alpha = Math.min(raw * 3, p.depth * 0.3 + 0.7);
         }
 
         if (p.alpha > 0.008) {
