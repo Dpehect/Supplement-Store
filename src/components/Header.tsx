@@ -36,7 +36,7 @@ export default function Header() {
         </div>
       </div>
 
-      <nav className="hidden md:flex items-center gap-8 font-sans font-bold text-sm tracking-wider uppercase">
+      <nav className="hidden lg:flex items-center gap-8 font-sans font-bold text-sm tracking-wider uppercase">
         <button
           onClick={() => scrollToSection("products")}
           className="hover:text-comicOrange transition-colors py-2 rounded-md px-2"
@@ -64,7 +64,7 @@ export default function Header() {
 
       <div className="flex items-center gap-2 md:gap-4">
         <button
-          className="md:hidden relative flex items-center justify-center p-2 rounded-xl bg-white border-3 border-black shadow-[4px_4px_0_#000] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
+          className="lg:hidden relative flex items-center justify-center p-2 rounded-xl bg-white border-3 border-black shadow-[4px_4px_0_#000] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6 text-black" /> : <Menu className="w-6 h-6 text-black" />}
@@ -83,7 +83,7 @@ export default function Header() {
 
         <button
           onClick={() => scrollToSection("products")}
-          className="group relative hidden md:flex items-center gap-2 bg-comicYellow hover:bg-comicOrange text-black font-comic text-lg md:text-xl px-5 py-2 border-3 border-black rounded-xl shadow-[4px_4px_0_#000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+          className="group relative hidden lg:flex items-center gap-2 bg-comicYellow hover:bg-comicOrange text-black font-comic text-lg md:text-xl px-5 py-2 border-3 border-black rounded-xl shadow-[4px_4px_0_#000] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
           data-cursor="HEMEN AL!"
         >
           <Zap className="w-5 h-5 fill-black animate-pulse group-hover:rotate-12 duration-200" />
@@ -93,7 +93,7 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-comicYellow border-b-4 border-black flex flex-col items-center py-6 gap-6 md:hidden z-[90] shadow-comic-lg animate-slide-in-right">
+        <div className="absolute top-full left-0 w-full bg-comicYellow border-b-4 border-black flex flex-col items-center py-6 gap-6 lg:hidden z-[90] shadow-comic-lg animate-slide-in-right">
           <button
             onClick={() => scrollToSection("products")}
             className="font-comic text-2xl uppercase text-black hover:text-white transition-colors"

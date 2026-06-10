@@ -294,7 +294,7 @@ export default function ComicStory() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
           {PANELS.map((panel, index) => {
             const hasNextPanel = index < PANELS.length - 1;
             const nextPanelId = hasNextPanel ? PANELS[index + 1].id : null;
