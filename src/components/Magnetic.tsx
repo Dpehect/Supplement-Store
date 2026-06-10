@@ -13,8 +13,6 @@ export default function Magnetic({ children, range = 40, strength = 0.35 }: Magn
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.innerWidth < 1024) return;
-
     const container = containerRef.current;
     if (!container) return;
 

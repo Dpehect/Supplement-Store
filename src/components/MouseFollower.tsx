@@ -33,9 +33,6 @@ export default function MouseFollower() {
     if (typeof window === "undefined") return;
     setMounted(true);
 
-    const isMobile = window.innerWidth < 1024;
-    if (isMobile) return; // no cursor on mobile
-
     const tick = () => {
       const mx = mouse.current.x;
       const my = mouse.current.y;
@@ -127,7 +124,6 @@ export default function MouseFollower() {
   }, []);
 
   if (!mounted) return null;
-  if (typeof window !== "undefined" && window.innerWidth < 1024) return null;
 
   const trailSizes  = [14, 12, 10, 8, 6, 4];
   const trailAlphas = [0.85, 0.65, 0.5, 0.35, 0.22, 0.12];

@@ -26,17 +26,24 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
   const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.innerWidth < 768) return;
-
     const card = cardRef.current;
     const image = imageRef.current;
     const badge = badgeRef.current;
     if (!card || !image) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMove = (e: MouseEvent | TouchEvent) => {
+      let clientX, clientY;
+      if ('touches' in e) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+
       const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       gsap.to(image, {
@@ -58,7 +65,7 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
       }
     };
 
-    const handleMouseLeave = () => {
+    const handleLeave = () => {
       gsap.to(image, {
         x: 0,
         y: 0,
@@ -78,12 +85,16 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
       }
     };
 
-    card.addEventListener("mousemove", handleMouseMove);
-    card.addEventListener("mouseleave", handleMouseLeave);
+    card.addEventListener("mousemove", handleMove as EventListener);
+    card.addEventListener("mouseleave", handleLeave);
+    card.addEventListener("touchmove", handleMove as EventListener, { passive: true });
+    card.addEventListener("touchend", handleLeave);
 
     return () => {
-      card.removeEventListener("mousemove", handleMouseMove);
-      card.removeEventListener("mouseleave", handleMouseLeave);
+      card.removeEventListener("mousemove", handleMove as EventListener);
+      card.removeEventListener("mouseleave", handleLeave);
+      card.removeEventListener("touchmove", handleMove as EventListener);
+      card.removeEventListener("touchend", handleLeave);
     };
   }, []);
 
