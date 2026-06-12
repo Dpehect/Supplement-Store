@@ -1,3 +1,5 @@
+https://supplement-store-alpha.vercel.app/
+
 # SoftBridge Supplements - Project Documentation
 
 This project is a highly performant, fully interactive premium supplement storefront designed with a comic-book aesthetic. No generic icons or emojis were used in the design; the entire look and feel is constructed through typography, dynamic color transitions, and custom animations. The goal was to build a production-ready e-commerce platform with a natural, handmade, yet highly professional interface.
